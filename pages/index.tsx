@@ -5,16 +5,15 @@ import { initializeApollo } from '../apollo/client'
 const ViewerQuery = gql`
   query ViewerQuery {
     viewer {
-      id
-      name
-      status
+        id
+        name
+        status
     }
   }
 `
 
 export default function Home() {
     const { data: { viewer }} = useQuery(ViewerQuery)
-    console.log(viewer)
     return (
         <>
         {viewer.name}
@@ -25,7 +24,7 @@ export default function Home() {
 export async function getStaticProps() {
     const apolloClient = initializeApollo()
   
-    await apolloClient.query({ query: ViewerQuery,})
+    await apolloClient.query({ query: ViewerQuery})
   
     return {
         props: {

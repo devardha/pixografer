@@ -1,5 +1,6 @@
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../apollo/client'
+import { wrapper } from '../redux/store';
 
 function MyApp({ Component, pageProps }) {
     const apolloClient = useApollo(pageProps.initialApolloState)
@@ -13,4 +14,4 @@ function MyApp({ Component, pageProps }) {
     )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp);
