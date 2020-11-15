@@ -1,5 +1,6 @@
 import React from 'react'
 import Styled from '@emotion/styled'
+import DotLoader from './DotLoader'
     
 const SearchResult = () => {
     return (
@@ -41,6 +42,7 @@ const SearchResult = () => {
                     <span className="photographer-name">Sam Kolder</span>
                 </li>
             </ol>
+            <DotLoader/>
         </Wrapper>
     );
 }

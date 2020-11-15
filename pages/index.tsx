@@ -4,8 +4,22 @@ import PhotographerHome from '../components/PhotographerHome'
 import { CgSearch } from 'react-icons/cg'
 import { useRouter } from 'next/router'
 import Footer from '../components/Footer'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/client'
+import { initializeApollo } from '../apollo/client'
+
+const ViewerQuery = gql`
+  query ViewerQuery {
+    viewer {
+      id
+      name
+      status
+    }
+  }
+`
 
 export default function Home() {
+    const { data: { viewer },} = useQuery(ViewerQuery)
     const router = useRouter();
     const getCoordinate = () => {
         if(navigator.geolocation){
@@ -17,6 +31,8 @@ export default function Home() {
             })
         }
     }
+    console.log(viewer);
+    
     return (
         <Layout title="Pixografer.com | Find Photographer Near You" navbarType="home">
             <Wrapper>
@@ -268,3 +284,17 @@ const Wrapper = styled.div`
         }
     }
 `
+
+export async function getStaticProps() {
+    const apolloClient = initializeApollo()
+  
+    await apolloClient.query({
+        query: ViewerQuery,
+    })
+  
+    return {
+        props: {
+            initialApolloState: apolloClient.cache.extract(),
+        },
+    }
+}
