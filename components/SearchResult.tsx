@@ -1,48 +1,27 @@
 import React from 'react'
 import Styled from '@emotion/styled'
-import DotLoader from './DotLoader'
-    
-const SearchResult = () => {
+import Link from 'next/link'
+
+const SearchResult = ({ results }) => {
     return (
         <Wrapper>
             <ol>
-                <li>
-                    <div className="image">
-                        <img src="https://images.unsplash.com/photo-1598659505195-98ff47e13651?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80" alt=""/>
-                    </div>
-                    <span className="photographer-loc">Semarang, Indonesia</span>
-                    <span className="photographer-name">Yudhatama Indra Wardhana</span>
-                </li>
-                <li>
-                    <div className="image">
-                        <img src="https://images.unsplash.com/photo-1586513265486-03d7d0770c53?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt=""/>
-                    </div>
-                    <span className="photographer-loc">Jakarta, Indonesia</span>
-                    <span className="photographer-name">Matt Komo</span>
-                </li>
-                <li>
-                    <div className="image">
-                        <img src="https://images.unsplash.com/photo-1603738762812-5cd2490d444f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" alt=""/>
-                    </div>
-                    <span className="photographer-loc">Bali, Indonesia</span>
-                    <span className="photographer-name">Sam Kolder</span>
-                </li>
-                <li>
-                    <div className="image">
-                        <img src="https://images.unsplash.com/photo-1603610515737-193e0b423983?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt=""/>
-                    </div>
-                    <span className="photographer-loc">Jakarta, Indonesia</span>
-                    <span className="photographer-name">Matt Komo</span>
-                </li>
-                <li>
-                    <div className="image">
-                        <img src="https://images.unsplash.com/photo-1603738762812-5cd2490d444f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" alt=""/>
-                    </div>
-                    <span className="photographer-loc">Bali, Indonesia</span>
-                    <span className="photographer-name">Sam Kolder</span>
-                </li>
+                {
+                    results?.map((photographer, index) => {
+                        return(
+                            <Link href={`/p/${photographer.username}`} key={index}>
+                            <li>
+                                <div className="image">
+                                    <img src={photographer.gallery[0].photo} alt=""/>
+                                </div>
+                                <span className="photographer-loc">Semarang, Indonesia</span>
+                                <span className="photographer-name">{photographer.username}</span>
+                            </li>
+                            </Link>
+                        )
+                    })
+                }
             </ol>
-            <DotLoader/>
         </Wrapper>
     );
 }

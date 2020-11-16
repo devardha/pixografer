@@ -3,9 +3,43 @@ import Styled from '@emotion/styled'
 import Layout from '../../components/Layout'
 import SearchResult from '../../components/SearchResult'
 import Footer from '../../components/Footer'
-    
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/client'
+import DotLoader from '../../components/DotLoader'
+
+const PhotographersQuery = gql`
+    query PhotographersQuery{
+        photographers{
+            fullname,
+            username,
+            email,
+            gallery{
+                photo,
+                verified,
+                photoTitle,
+            }
+            verified,
+            available,
+            phone,
+            rating{
+                rating,
+                userId
+            }
+            city,
+            photo,
+            services{
+                serviceName,
+                servicePrice
+            }
+        }
+    }
+`
+
 const Search = ({ longitude, latitude, ipkey }) => {
-    const [loc, setLoc] = useState()
+    const [loc, setLoc] = useState();
+    const [ results, setResults ]: any = useState()
+    const { data, loading } = useQuery(PhotographersQuery);
+
     const fetchPhotographers = async () => {
         const res = await fetch(`https://us1.locationiq.com/v1/reverse.php?key=${ipkey}&lat=${latitude}&lon=${longitude}&format=json`)
         const location = await res.json()
@@ -14,21 +48,23 @@ const Search = ({ longitude, latitude, ipkey }) => {
     }
 
     useEffect(() => {
-        // fetchPhotographers()
-    }, [])
+        if(data){
+            setResults(data.photographers)
+        }
+    }, [data])
 
     return (
         <Layout title="Search | Pixografer.com" navbarType="search">
             <Wrapper>
                 <span className="loc">{ loc ? loc : 'Semarang, Central Java, Indonesia' }</span>
                 <h2>Photographers Near You</h2>
-                <p>302 Photographers Found</p>
+                <p>{results ? results.length : '0'} Photographers Found</p>
                 <div className="filter">
                     <button>Price</button>
                     <button>Categories</button>
                     <button>Service Type</button>
                 </div>
-                <SearchResult/>
+                { data && results ? <SearchResult results={results}/> : <DotLoader/> }
             </Wrapper>
             <Footer/>
         </Layout>
@@ -38,6 +74,10 @@ const Search = ({ longitude, latitude, ipkey }) => {
 const Wrapper = Styled.div`
     margin-top:73px;
     padding: 40px 24px 0 24px;
+
+    .loader{
+        margin-top:40px;
+    }
 
     .loc{
         font-size:14px;

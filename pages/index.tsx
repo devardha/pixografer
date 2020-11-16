@@ -4,6 +4,7 @@ import PhotographerHome from '../components/PhotographerHome'
 import { CgSearch } from 'react-icons/cg'
 import { useRouter } from 'next/router'
 import Footer from '../components/Footer'
+import Services from '../components/Services'
 
 export default function Home() {
     const router = useRouter();
@@ -44,7 +45,8 @@ export default function Home() {
                     <button onClick={() => getCoordinate()} className="dark">Find Near Me</button>
                 </div>
             </div>
-            <PhotographerHome/>
+            {/* <PhotographerHome/> */}
+            <Services/>
             <Footer/>
             </Wrapper>
         </Layout>
