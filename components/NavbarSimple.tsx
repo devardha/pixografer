@@ -7,9 +7,7 @@ function NavbarSimple(){
         <Wrapper>
             <div className="nav-left">
                 <Link href="/">
-                    <>
-                        <img src="/img/pixografer-logo-v1.1.png" alt=""/>
-                    </>
+                    <img src="/img/pixografer-logo-v1.1.png" alt=""/>
                 </Link>
             </div>
             <div className="nav-center">
@@ -20,9 +18,11 @@ function NavbarSimple(){
             </div>
             <div className="nav-right">
                 <span className="nav-list">Become a Photographer</span>
+                <Link href="/login">
                 <button className="profile-button">
                     Login
                 </button>
+                </Link>
             </div>
         </Wrapper>
     )
@@ -133,6 +133,7 @@ const Wrapper = styled.nav`
             height: 40px;
             width: 40px;
             margin-right: 11px;
+            cursor:pointer;
         }
     }
 

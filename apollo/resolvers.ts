@@ -120,6 +120,7 @@ export const resolvers = {
         login: async (_parent, { email, password }, _context) => {
             await dbConnect();
 
+            console.log(_context)
             const cookies = new Cookies(_context.req, _context.res)
             try {
                 const photographer = await Photographer.findOne({email})

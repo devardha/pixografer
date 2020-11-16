@@ -22,10 +22,6 @@ export default function Home() {
         <Layout title="Pixografer.com | Find Photographer Near You" navbarType="home">
             <Wrapper>
             <div className="header">
-                <div className="nav-search">
-                <input type="text"/>
-                <span><i><CgSearch/></i>Where are you going?</span>
-                </div>
                 <form>
                     <div className="header-search">
                         <div className="search-loc search-block border">

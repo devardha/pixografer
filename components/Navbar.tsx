@@ -1,14 +1,13 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import { CgSearch } from 'react-icons/cg'
 
 function Navbar(){
     return(
         <Wrapper>
             <div className="nav-left">
                 <Link href="/">
-                    <>
-                        <img src="/img/pixografer-logo-v1.1.png" alt=""/>
-                    </>
+                    <img src="/img/pixografer-logo-v1.1.png" alt=""/>
                 </Link>
             </div>
             <div className="nav-center">
@@ -17,12 +16,18 @@ function Navbar(){
                     <li>Popular</li>
                     <li>Blog</li>
                 </ul>
+                <div className="nav-search">
+                    <input type="text" placeholder="Where are you going?"/>
+                    <i><CgSearch/></i>
+                </div>
             </div>
             <div className="nav-right">
                 <span className="nav-list">Become a Photographer</span>
+                <Link href="/login">
                 <button className="profile-button">
                     Login
                 </button>
+                </Link>
             </div>
         </Wrapper>
     )
@@ -67,12 +72,15 @@ const Wrapper = styled.nav`
 
     .nav-center{
         flex:0 1 auto;
+        display:flex;
+        width:100%;
         position:relative;
         z-index:10;
+        justify-content:center;
 
         ul{
             padding: 0;
-            display:flex;
+            display:none;
             align-items:center;
             list-style:none;
             margin-right:2rem;
@@ -100,6 +108,7 @@ const Wrapper = styled.nav`
             height: 40px;
             width: 40px;
             margin-right: 11px;
+            cursor:pointer;
         }
     }
 
@@ -124,9 +133,38 @@ const Wrapper = styled.nav`
     }
 
     .nav-left,
-    .nav-right,
-    .nav-center{
+    .nav-right{
         display:none;
+    }
+    
+    .nav-search{
+        display:flex;
+        align-items:center;
+        position:relative;
+        font-size:14px;
+        border-radius:5rem;
+
+        input{
+            width:100%;
+            height: 40px;
+            min-width:300px;
+            background:#fff;
+            border-radius:5rem;
+            padding:5px 1rem;
+            border:1px solid #ddd;
+        }
+
+        i{
+            position: absolute;
+            right:6px;
+            padding:8px 9px 8px 7px;
+            background:#0552ff;
+            color:#fff;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
     }
 
     @media(min-width:768px){
@@ -134,6 +172,18 @@ const Wrapper = styled.nav`
         .nav-right,
         .nav-center{
             display:flex;
+        }
+
+        .nav-center {
+            width:unset;
+
+            ul {
+                display:flex;
+            }
+        }
+
+        .nav-search{
+            display:none;
         }
 
         .nav-right{

@@ -51,29 +51,40 @@ const PhotograperPage = ({ username }) => {
         <Layout title={`Yudhatama Indra Wardhana Setyabudi | Pixografer.com`} navbarType="search">
             <Wrapper>
                 {
-                    photographerData ? (
-                        <>
-                        <div className="page-header">
-                            <div className="profile-picture"></div>
-                            <div className="profile-detail">
-                                <span className="loc">{photographerData.city}</span>
-                                <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span></h2>
-                            </div>
-                        </div>
-                        <div className="page-body">
-                            <div className="body-left">
-                                <div className="service-list">
-                                    <button>Photography</button>
-                                    <button>Videography</button>
-                                    <button>Photo Editing</button>
+                    loading ? (
+                        <DotLoader/>
+                    ) : (
+                        data && photographerData? (
+                            <>
+                            <div className="page-header">
+                                <div className="profile-picture"></div>
+                                <div className="profile-detail">
+                                    <span className="loc">{photographerData.city}</span>
+                                    <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span></h2>
                                 </div>
                             </div>
-                            <div className="body-right">
-
+                            <div className="page-body">
+                                <div className="body-left">
+                                    <div className="service-list">
+                                        <button>Photography</button>
+                                        <button>Photo Editing</button>
+                                        <button>Videography</button>
+                                    </div>
+                                </div>
+                                <div className="body-right">
+    
+                                </div>
                             </div>
-                        </div>
-                        </>
-                    ) : <DotLoader/>
+                            </>
+                        ) : (
+                            <>
+                                <div className="not-found">
+                                    <span className="not-found-title">Photographer Not Found!</span>
+                                    <p>Sorry, photographer you are looking for could not be found. Please go back to home page and try to visit this page later.</p>
+                                </div>
+                            </>
+                        )
+                    )
                 }
             </Wrapper>
             <Footer/>
@@ -83,15 +94,35 @@ const PhotograperPage = ({ username }) => {
     
 const Wrapper = Styled.div`
     margin-top:73px;
-    padding:0 5rem;
-    padding-top:40px;
+    padding:40px 24px 0 24px;
+
+    .not-found{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        min-height:50vh;
+
+        .not-found-title{
+            font-weight:bold;
+            font-size:1.5rem;
+        }
+
+        p{
+            line-height:20px;
+            font-size:14px;
+            max-width:100%;
+            text-align:center;
+        }
+    }
 
     .page-body{
         display:flex;
+        flex-direction:column;
         margin-top:40px;
         
         .body-left{
-            width:67%;
+            width:100%;
             padding-right:1rem;
 
             .service-list{
@@ -119,9 +150,8 @@ const Wrapper = Styled.div`
         }
 
         .body-right{
-            width:33%;
+            width:100%;
             border-radius:10px;
-            height:400px;
         }
     }
     .verified{
@@ -134,6 +164,10 @@ const Wrapper = Styled.div`
     .page-header{
         display:flex;
         align-items:center;
+
+        .profile-detail{
+            max-width:69%;
+        }
 
         .profile-picture{
             width:100px;
@@ -148,13 +182,46 @@ const Wrapper = Styled.div`
         font-size:14px;
     }
     h2{
-        font-size:1.75rem;
+        font-size:1.25rem;
         margin-top:8px;
+        max-width: 69%;
+    }
+
+    @media(min-width:1024px){
+        padding:40px 5rem 0 5rem;
+
+        .not-found{
+            p{
+                max-width:50%;
+            }
+        }
+
+        .page-body{
+            flex-direction:row;
+        }
+
+        .body-left{
+            width:67%;
+        }
+
+        .body-right{
+            width:33%;
+        }
+
+        .page-header{
+            .profile-detail{
+                max-width: unset;
+            }
+
+            h2{
+                font-size:1.75rem;
+                max-width: unset;
+            }
+        }
     }
 `
 
 PhotograperPage.getInitialProps = async ({ query: { username } }) => {
-
     return {
         username: username
     }
