@@ -36,7 +36,7 @@ const Wrapper = Styled.div`
     ol{
         display: grid;
         list-style: none;
-        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
         grid-gap: 16px;
         padding:0;
 
@@ -68,6 +68,14 @@ const Wrapper = Styled.div`
     }
 
     @media(min-width:1024px){
+        padding: 0 5rem;
+
+        ol{
+            grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+        }
+    }
+
+    @media(min-width:1288px){
         padding: 0 5rem;
     }
 `

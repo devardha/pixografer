@@ -70,9 +70,10 @@ const PhotograperPage = ({ username }) => {
                                         <button>Photo Editing</button>
                                         <button>Videography</button>
                                     </div>
+                                    
                                 </div>
                                 <div className="body-right">
-    
+
                                 </div>
                             </div>
                             </>
