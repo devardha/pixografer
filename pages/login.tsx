@@ -121,6 +121,7 @@ const Wrapper = Styled.div`
     h2{
         font-size:2rem;
         text-align:center;
+        margin-bottom:1rem;
     }
     form{
         width:90%;

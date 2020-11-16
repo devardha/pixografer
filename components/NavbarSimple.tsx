@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { CgSearch } from 'react-icons/cg'
+import { connect } from 'react-redux'
 
-function NavbarSimple(){
+function NavbarSimple({ authenticate }){
     return(
         <Wrapper>
             <div className="nav-left">
@@ -18,11 +19,21 @@ function NavbarSimple(){
             </div>
             <div className="nav-right">
                 <span className="nav-list">Become a Photographer</span>
-                <Link href="/login">
-                <button className="profile-button">
-                    Login
-                </button>
-                </Link>
+                {
+                    authenticate ? (
+                        <Link href="/dashbaord">
+                        <button className="profile-button">
+                            Dashboard
+                        </button>
+                        </Link>
+                    ) : (
+                        <Link href="/login">
+                        <button className="profile-button">
+                            Login
+                        </button>
+                        </Link>
+                    )
+                }
             </div>
         </Wrapper>
     )
@@ -181,4 +192,9 @@ const Wrapper = styled.nav`
     }
 `
 
-export default NavbarSimple
+const mapStateToProps = (state) => ({
+    authenticate: state.account.authenticate,
+    userRole: state.account.userRole
+})
+
+export default connect(mapStateToProps)(NavbarSimple)

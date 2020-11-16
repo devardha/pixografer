@@ -1,6 +1,7 @@
 import React from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
+import { HiPhotograph } from 'react-icons/hi'
 
 const SearchResult = ({ results }) => {
     return (
@@ -11,9 +12,15 @@ const SearchResult = ({ results }) => {
                         return(
                             <Link href={`/p/${photographer.username}`} key={index}>
                             <li>
-                                <div className="image">
-                                    <img src={photographer.gallery[0].photo} alt=""/>
-                                </div>
+                                {
+                                    photographer.gallery.length ? (
+                                        <div className="image">
+                                            <img src={photographer.gallery[0].photo} alt=""/>
+                                        </div>
+                                    ) : <div className="image">
+                                        <i><HiPhotograph/></i>
+                                    </div>
+                                }
                                 <span className="photographer-loc">Semarang, Indonesia</span>
                                 <span className="photographer-name">{photographer.username}</span>
                             </li>
@@ -48,11 +55,19 @@ const Wrapper = Styled.div`
                 overflow: hidden;
                 height:180px;
                 background:#eee;
+                display:flex;
+                align-items:center;
+                justify-content:center;
 
                 img{
                     width:100%;
                     height:100%;
                     object-fit:cover;
+                }
+
+                i{
+                    font-size:5rem;
+                    color:#ccc;
                 }
             }
 
