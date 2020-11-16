@@ -76,7 +76,7 @@ export const typeDefs = gql`
         photographer(username: String): PhotographerSafe
         getMyJobs(photographerId: String): [FullTransaction]
         getMyPhotos(photographerId: String): [Gallery]
-        whoami(token: String): Entity
+        whoami: Entity
     }
     type Mutation{
         uploadPhoto(imageUrl: String, imageName: String, photographerId: String): Boolean

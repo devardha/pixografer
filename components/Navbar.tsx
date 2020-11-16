@@ -26,7 +26,7 @@ function Navbar({ authenticate }){
                 <span className="nav-list">Become a Photographer</span>
                 {
                     authenticate ? (
-                        <Link href="/">
+                        <Link href="/dashboard">
                             <button className="profile-button">
                                 Dashboard
                             </button>

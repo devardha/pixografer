@@ -78,10 +78,12 @@ export const resolvers = {
                 throw error
             }
         },
-        whoami: async (_parent, { token }, _context) => {
+        whoami: async (_parent, _args, _context) => {
+            const cookies = new Cookies(_context.req, _context.res)
             await dbConnect();
 
             try {
+                const token = cookies.get('_usid')
                 const decode = jwt.verify(token, process.env.SECRET_KEY);
                 const id = decode.id
 
