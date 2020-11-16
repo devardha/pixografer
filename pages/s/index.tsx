@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import Layout from '../../components/Layout'
 import SearchResult from '../../components/SearchResult'
 import Footer from '../../components/Footer'
     
-const Search = () => {
+const Search = ({ longitude, latitude, ipkey }) => {
+    const [loc, setLoc] = useState()
+    const fetchPhotographers = async () => {
+        const res = await fetch(`https://us1.locationiq.com/v1/reverse.php?key=${ipkey}&lat=${latitude}&lon=${longitude}&format=json`)
+        const location = await res.json()
+
+        setLoc(location.display_name)
+    }
+
+    useEffect(() => {
+        // fetchPhotographers()
+    }, [])
+
     return (
         <Layout title="Search | Pixografer.com" navbarType="search">
             <Wrapper>
-                <span className="loc">Semarang, Jawa Tengah, Indonesia</span>
+                <span className="loc">{ loc ? loc : 'Semarang, Central Java, Indonesia' }</span>
                 <h2>Photographers Near You</h2>
                 <p>302 Photographers Found</p>
                 <div className="filter">
@@ -67,9 +79,10 @@ const Wrapper = Styled.div`
 `
 
 Search.getInitialProps = async ({ query }) => {
-    console.log(query)
     return {
-
+        longitude: query.lon,
+        latitude: query.lat,
+        ipkey: process.env.LOCATIONIQ_KEY
     }
 }
 export default Search

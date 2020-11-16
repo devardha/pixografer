@@ -1,32 +1,80 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import Layout from '../../components/Layout'
 import Footer from '../../components/Footer'
 import { HiCheckCircle } from 'react-icons/hi'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/client'
+import DotLoader from '../../components/DotLoader'
+
+const PhotographerQuery = gql`
+    query PhotographerQuery($username: String!) {
+        photographer(username: $username){
+            fullname,
+            username,
+            email,
+            gallery{
+                photo,
+                verified,
+                photoTitle,
+            }
+            verified,
+            available,
+            phone,
+            rating{
+                rating,
+                userId
+            }
+            city,
+            photo,
+            services{
+                serviceName,
+                servicePrice
+            }
+        }
+    }
+`
+
+const PhotograperPage = ({ username }) => {
+    const [photographerData, setPhotographerData]: any = useState()
+    const { data, loading } = useQuery(PhotographerQuery, {
+        variables: { username }
+    })
     
-const PhotograperPage = () => {
+    useEffect(() => {
+        if(data){
+            setPhotographerData(data.photographer)
+        }
+    }, [data])
+
     return (
         <Layout title={`Yudhatama Indra Wardhana Setyabudi | Pixografer.com`} navbarType="search">
             <Wrapper>
-                <div className="page-header">
-                    <div className="profile-picture"></div>
-                    <div className="profile-detail">
-                        <span className="loc">Semarang, Jawa Tengah, Indonesia</span>
-                        <h2>Yudhatama Indra Wardhana Setyabudi<span className="verified"><HiCheckCircle/></span></h2>
-                    </div>
-                </div>
-                <div className="page-body">
-                    <div className="body-left">
-                        <div className="service-list">
-                            <button>Photography</button>
-                            <button>Videography</button>
-                            <button>Photo Editing</button>
+                {
+                    photographerData ? (
+                        <>
+                        <div className="page-header">
+                            <div className="profile-picture"></div>
+                            <div className="profile-detail">
+                                <span className="loc">{photographerData.city}</span>
+                                <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span></h2>
+                            </div>
                         </div>
-                    </div>
-                    <div className="body-right">
+                        <div className="page-body">
+                            <div className="body-left">
+                                <div className="service-list">
+                                    <button>Photography</button>
+                                    <button>Videography</button>
+                                    <button>Photo Editing</button>
+                                </div>
+                            </div>
+                            <div className="body-right">
 
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                        </>
+                    ) : <DotLoader/>
+                }
             </Wrapper>
             <Footer/>
         </Layout>
@@ -73,7 +121,6 @@ const Wrapper = Styled.div`
         .body-right{
             width:33%;
             border-radius:10px;
-            border:1px solid #ddd;
             height:400px;
         }
     }
@@ -107,8 +154,9 @@ const Wrapper = Styled.div`
 `
 
 PhotograperPage.getInitialProps = async ({ query: { username } }) => {
+
     return {
-        
+        username: username
     }
 }
     

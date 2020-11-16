@@ -9,13 +9,13 @@ import { useQuery } from '@apollo/client'
 import { initializeApollo } from '../apollo/client'
 
 const ViewerQuery = gql`
-  query ViewerQuery {
-    viewer {
-      id
-      name
-      status
+    query ViewerQuery {
+        viewer {
+            id
+            name
+            status
+        }
     }
-  }
 `
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
         }
     }
     console.log(viewer);
-    
+
     return (
         <Layout title="Pixografer.com | Find Photographer Near You" navbarType="home">
             <Wrapper>
