@@ -35,6 +35,7 @@ export const typeDefs = gql`
         photo: String
         transaction: [Transaction]
         services: [Services]
+        categories: [String]
     }
     type PhotographerSafe{
         _id: String!
@@ -50,6 +51,7 @@ export const typeDefs = gql`
         photo: String
         bio: String
         services: [Services]
+        categories: [String]
     }
     type User{
         _id: String!

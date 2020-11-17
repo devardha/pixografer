@@ -13,6 +13,7 @@ const PhotographerQuery = gql`
             fullname,
             username,
             email,
+            categories,
             gallery{
                 photo,
                 verified,
@@ -66,9 +67,13 @@ const PhotograperPage = ({ username }) => {
                             <div className="page-body">
                                 <div className="body-left">
                                     <div className="service-list">
-                                        <button>Photography</button>
-                                        <button>Photo Editing</button>
-                                        <button>Videography</button>
+                                    {
+                                        photographerData.categories?.map((category, index) => {
+                                            return(
+                                                <button key={index}>{category}</button>
+                                            )
+                                        })
+                                    }
                                     </div>
                                     
                                 </div>

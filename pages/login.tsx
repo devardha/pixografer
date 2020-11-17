@@ -57,7 +57,7 @@ const LoginMutation = gql`
 `
     
 const Login = () => {
-    const [loginUser, { data, error }] = useMutation(LoginMutation);
+    const [loginUser, { loading }] = useMutation(LoginMutation);
     const router = useRouter()
 
     const submitHandler = (e) => {
@@ -87,13 +87,13 @@ const Login = () => {
                     <h2>Login</h2>
                     <div className="field">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email"/>
+                        <input type="email" name="email" placeholder="Email"/>
                     </div>
                     <div className="field">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password"/>
+                        <input type="password" name="password" placeholder="Password"/>
                     </div>
-                    <button className="dark" type="submit">Login</button>
+                    <button className="dark" type="submit" disabled={loading}>Login</button>
                     <span className="form-subtitle">Don't have an account? <Link href="/signup"><a>Sign up</a></Link> here.</span>
                 </form>
             </Wrapper>

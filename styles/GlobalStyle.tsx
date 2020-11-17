@@ -66,6 +66,11 @@ function GlobalStyle(){
             &:hover{
                 background-color:#222;
             }
+
+            &:disabled{
+                background-color: #eee;
+                color: #999;
+            }
         }
 
         .secondary{

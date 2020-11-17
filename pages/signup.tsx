@@ -29,7 +29,7 @@ const RegisterMutation = gql`
 `
 
 const Signup = () => {
-    const [registerUser, { data }] = useMutation(RegisterMutation);
+    const [registerUser, { loading }] = useMutation(RegisterMutation);
     const router = useRouter()
 
     const submitHandler = (e) => {
@@ -63,23 +63,23 @@ const Signup = () => {
                     <h2>Signup</h2>
                     <div className="field">
                         <label htmlFor="fullname">Full Name</label>
-                        <input type="text" name="fullname" placeholder="John Doe"/>
+                        <input type="text" name="fullname" placeholder="Full Name"/>
                     </div>
                     <div className="field-col">
                         <div className="field">
                             <label htmlFor="username">Username</label>
-                            <input type="text" name="username" placeholder="doejohn"/>
+                            <input type="text" name="username" placeholder="Username"/>
                         </div>
                         <div className="field">
                             <label htmlFor="email">Email</label>
-                            <input type="email" name="email" placeholder="doe@example.com"/>
+                            <input type="email" name="email" placeholder="Email"/>
                         </div>
                     </div>
                     <div className="field">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password"/>
+                        <input type="password" name="password" placeholder="Password"/>
                     </div>
-                    <button className="dark" type="submit">Sign Up</button>
+                    <button className="dark" type="submit" disabled={loading}>Sign Up</button>
                     <span className="form-subtitle">Already have an account <Link href="/login"><a>Login</a></Link> here.</span>
                 </form>
             </Wrapper>

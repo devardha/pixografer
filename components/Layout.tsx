@@ -54,6 +54,7 @@ const WhoamiQuery = gql`
                     serviceName,
                     servicePrice
                 }
+                categories
             }
         }
     }

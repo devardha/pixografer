@@ -1,10 +1,14 @@
 import Styled from '@emotion/styled'
 import { useEffect } from 'react';
-import { BiUserCircle, BiSearch, BiHeart } from 'react-icons/bi'
+import { BiUserCircle, BiSearch, BiHeart, BiHomeSmile } from 'react-icons/bi'
 import Link from 'next/link'
 import { connect } from 'react-redux'
+import { useRouter } from 'next/router'
 
 const NavbarMobile = ({ off, authenticate, userRole }) => {
+    const router = useRouter()
+    const path = router.pathname;
+
     useEffect(() => {
         if(off){
             let prevScrollpos = window.pageYOffset;
@@ -24,13 +28,14 @@ const NavbarMobile = ({ off, authenticate, userRole }) => {
         <Wrapper>
             <nav id="navbar">
                 <div className="nav-wrapper">
-                    <Link href="/s"><div className="nav-icon"><BiSearch/></div></Link>
-                    <Link href="/favorite"><div className="nav-icon"><BiHeart/></div></Link>
+                    <Link href="/"><div className={`nav-icon ${path === '/' ? 'active' : ''}`}><BiHomeSmile/></div></Link>
+                    <Link href="/s"><div className={`nav-icon ${path === '/s' ? 'active' : ''}`}><BiSearch/></div></Link>
+                    <Link href="/favorite"><div className={`nav-icon ${path === '/favourite' ? 'active' : ''}`}><BiHeart/></div></Link>
                     {
                         authenticate ? (
-                            <Link href={userRole === 'user' ? '/profile' : '/dashboard'}><div className="nav-icon"><BiUserCircle/></div></Link>
+                            <Link href={userRole === 'user' ? '/profile' : '/dashboard'}><div className={`nav-icon ${path === '/profile' || path === '/dashboard' ? 'active' : ''}`}><BiUserCircle/></div></Link>
                         ) : (
-                            <Link href="/login"><div className="nav-icon"><BiUserCircle/></div></Link>
+                            <Link href="/login"><div className={`nav-icon ${path === '/login' ? 'active' : ''}`}><BiUserCircle/></div></Link>
                         )
                     }
                 </div>
@@ -40,6 +45,9 @@ const NavbarMobile = ({ off, authenticate, userRole }) => {
 }
     
 const Wrapper = Styled.div`
+    .active{
+        color:#0552ff;
+    }
     nav{
         display:flex;
         align-items: center;

@@ -83,6 +83,9 @@ const photographerSchema = new Schema({
         type: String,
         default: ''
     },
+    categories: [{
+        type: String
+    }],
     transaction: [
         {
             type: mongoose.Schema.Types.ObjectId,
