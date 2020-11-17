@@ -137,7 +137,7 @@ const Wrapper = Styled.div`
                     border-radius: 5rem;
                     color: #222222;
                     position: relative;
-                    padding: 8px 16px 8px 16px;
+                    padding: 8px 12px 8px 12px;
                     font-size: 12px;
                     line-height: 16px;
                     font-weight:400;
@@ -165,17 +165,18 @@ const Wrapper = Styled.div`
     .page-header{
         display:flex;
         align-items:center;
+        flex-direction:column;
 
         .profile-detail{
-            max-width:69%;
+            text-align:center;
         }
 
         .profile-picture{
-            width:100px;
-            height:100px;
+            width:150px;
+            height:150px;
             background:#eee;
             border-radius:50%;
-            margin-right:1rem;
+            margin: 0 auto 1rem auto;
         }
     }
 
@@ -185,12 +186,27 @@ const Wrapper = Styled.div`
     h2{
         font-size:1.25rem;
         margin-top:8px;
-        max-width: 69%;
+    }
+
+    @media(min-width:768px){
+        padding:40px 5rem 0 5rem;
+        
+        .page-header{
+            flex-direction:row;
+
+            .profile-picture{
+                height:100px;
+                width:100px;
+                margin: 0 1rem 0 0;
+            }
+
+            .profile-detail{
+                text-align:left;
+            }
+        }
     }
 
     @media(min-width:1024px){
-        padding:40px 5rem 0 5rem;
-
         .not-found{
             p{
                 max-width:50%;
@@ -199,6 +215,10 @@ const Wrapper = Styled.div`
 
         .page-body{
             flex-direction:row;
+
+            button{
+                padding: 8px 16px 8px 16px;
+            }
         }
 
         .body-left{
@@ -210,13 +230,8 @@ const Wrapper = Styled.div`
         }
 
         .page-header{
-            .profile-detail{
-                max-width: unset;
-            }
-
             h2{
                 font-size:1.75rem;
-                max-width: unset;
             }
         }
     }

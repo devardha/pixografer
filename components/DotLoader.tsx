@@ -22,8 +22,8 @@ const Wrapper = Styled.div`
     }
 
     .loader > div {
-        width: 10px;
-        height: 10px;
+        width: 6px;
+        height: 6px;
         background: #000;
         border-radius: 50%;
         margin : 3px;

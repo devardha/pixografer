@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/client'
 import { loadUser } from '../redux/actions/authActions'
 import { useEffect } from "react"
 import { connect } from 'react-redux'
+import NavbarMobile from './NavbarMobile'
 
 const WhoamiQuery = gql`
     query WhoamiQuery{
@@ -74,6 +75,7 @@ function Layout({ children, title, navbarType, loadUser }) {
             </Head>
             { navbarType === 'home' ? <Navbar/> : <NavbarSimple/> }
             { children }
+            { navbarType === 'home' || navbarType === 'search' ? <NavbarMobile off={navbarType === 'home' || navbarType === 'search'}/> : '' }
         </Wrapper>
     )
 }
