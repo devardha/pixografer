@@ -4,9 +4,8 @@ import { wrapper } from '../redux/store'
 import GlobalStyle from '../styles/GlobalStyle'
 import NextNProgress from '../components/NextNProgress'
 
-function MyApp({ Component, pageProps, user }) {
+function MyApp({ Component, pageProps }) {
     const apolloClient = useApollo(pageProps.initialApolloState)
-    console.log(user)
 
     return (
         <>

@@ -61,18 +61,23 @@ const Wrapper = styled.nav`
 
         input{
             width:100%;
-            height: 40px;
+            height: 47px;
             min-width:300px;
             background:#fff;
             border-radius:5rem;
-            padding:5px 1rem;
+            padding:5px 1rem 5px 1.2rem;
             border:1px solid #ddd;
+
+            &::placeholder{
+                font-size:1rem;
+            }
         }
 
         i{
             position: absolute;
-            right:6px;
-            padding:8px 9px 8px 7px;
+            right: 6px;
+            padding: 8px 9px 8px 7px;
+            font-size: 1.1rem;
             background:#0552ff;
             color:#fff;
             border-radius:50%;
