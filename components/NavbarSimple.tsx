@@ -18,7 +18,7 @@ function NavbarSimple({ authenticate }){
                 </div>
             </div>
             <div className="nav-right">
-                <span className="nav-list">Become a Photographer</span>
+                <Link href="/join"><span className="nav-list">Become a Photographer</span></Link>
                 {
                     authenticate ? (
                         <Link href="/dashbaord">

@@ -6,68 +6,49 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 
-const JoinMutation = gql`
-    mutation JoinMutation($fullname: String!, $password: String!, $email: String!, $phone: String!, $city: String!, $username: String!){
-        registerPhotographer(
+const RegisterMutation = gql`
+    mutation RegisterMutation($fullname: String!, $password: String!, $email: String!, $username: String!){
+        registerUser(
             fullname: $fullname,
-            username: $username,
             email: $email,
-            password: $password,
-            phone: $phone,
-            city: $city
+            username: $username,
+            password: $password
             ){
             fullname,
             username,
             email,
-            gallery{
-                photo,
-                verified,
-                photoTitle,
-            }
-            verified,
-            available,
-            phone,
-            rating{
-                rating,
-                userId
-            }
-            city,
             photo,
-            services{
-                serviceName,
-                servicePrice
+            transaction{
+                success,
+                value,
+                photographerId,
+                userId,
             }
         }
     }
 `
 
-const Join = () => {
-    const [joinUser, { data, error }] = useMutation(JoinMutation);
+const Signup = () => {
+    const [registerUser, { data }] = useMutation(RegisterMutation);
     const router = useRouter()
 
     const submitHandler = (e) => {
         e.preventDefault();
 
         const fullname = e.currentTarget.elements.fullname
-        const username = e.currentTarget.elements.username
         const email = e.currentTarget.elements.email
+        const username = e.currentTarget.elements.username
         const password = e.currentTarget.elements.password
-        const phone = e.currentTarget.elements.phone
-        const city = e.currentTarget.elements.city
 
-        console.log(fullname.value, username.value, email.value, password.value, phone.value, city.value)
-
-        joinUser({
+        registerUser({
             variables: {
-                email: email.value,
-                password: password.value,
                 fullname: fullname.value,
+                email: email.value,
                 username: username.value,
-                phone: phone.value,
-                city: city.value
+                password: password.value
             }
         }).then(res => {
-            if(res.data.registerPhotographer){
+            if(res.data.registerUser){
                 router.push('/login')
             }
         }).catch(err => {
@@ -76,10 +57,10 @@ const Join = () => {
     }
 
     return (
-        <Layout title="Join | Pixografer.com" navbarType="login">
+        <Layout title="Signup | Pixografer.com" navbarType="login">
             <Wrapper>
                 <form onSubmit={submitHandler}>
-                    <h2>Join</h2>
+                    <h2>Signup</h2>
                     <div className="field">
                         <label htmlFor="fullname">Full Name</label>
                         <input type="text" name="fullname" placeholder="John Doe"/>
@@ -95,19 +76,11 @@ const Join = () => {
                         </div>
                     </div>
                     <div className="field">
-                        <label htmlFor="phone">Phone</label>
-                        <input type="tel" name="phone" placeholder="0888 8888 8888"/>
-                    </div>
-                    <div className="field">
-                        <label htmlFor="city">City</label>
-                        <input type="text" name="city" placeholder="Semarang, Jawa Tengah, Indonesia"/>
-                    </div>
-                    <div className="field">
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password"/>
                     </div>
                     <button className="dark" type="submit">Sign Up</button>
-                    <span className="form-subtitle">Already have an account? <Link href="/login"><a>Login</a></Link> here.</span>
+                    <span className="form-subtitle">Already have an account <Link href="/login"><a>Login</a></Link> here.</span>
                 </form>
             </Wrapper>
             <Footer/>
@@ -181,4 +154,4 @@ const Wrapper = Styled.div`
 
 `
 
-export default Join
+export default Signup
