@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import Styled from '@emotion/styled'
 import Layout from '../components/Layout'
 import Footer from '../components/Footer'
@@ -58,10 +58,12 @@ const LoginMutation = gql`
     
 const Login = () => {
     const [loginUser, { loading }] = useMutation(LoginMutation);
+    const [errorMsg, setErrorMsg] = useState('')
     const router = useRouter()
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setErrorMsg('')
 
         const email = e.currentTarget.elements.email
         const password = e.currentTarget.elements.password
@@ -76,7 +78,7 @@ const Login = () => {
                 router.push('/')
             }
         }).catch(err => {
-            console.log(err)
+            setErrorMsg(err.graphQLErrors[0].message)
         })
     }
 
@@ -85,6 +87,13 @@ const Login = () => {
             <Wrapper>
                 <form onSubmit={submitHandler}>
                     <h2>Login</h2>
+                    {
+                        errorMsg ? (
+                            <div className="error-msg">
+                                { errorMsg }
+                            </div>
+                        ) : ''
+                    }
                     <div className="field">
                         <label htmlFor="email">Email</label>
                         <input type="email" name="email" placeholder="Email"/>
@@ -107,6 +116,15 @@ const Wrapper = Styled.div`
     padding: 40px 24px 0 24px;
     display:flex;
     justify-content:center;
+
+    .error-msg{
+        padding: .5rem .5rem;
+        border: 1px solid #ffa0a0;
+        font-size: .8rem;
+        text-align: center;
+        color: red;
+        background: #ffe2e6;
+    }
 
     button{
         margin-top:1rem;

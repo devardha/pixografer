@@ -45,12 +45,14 @@ const Wrapper = styled.nav`
     align-items:center;
     background:transparent;
     justify-content:space-between;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height:73px;
     box-shadow:rgba(0, 0, 0, 0.08) 0px 1px 12px !important;
     justify-content: center;
+    background:#fff;
+    z-index:100;
 
     .nav-search{
         display:flex;
@@ -189,6 +191,14 @@ const Wrapper = styled.nav`
 
         .nav-right{
             display:flex;
+        }
+
+        .nav-search{
+            input{
+                &::placeholder{
+                    font-size:14px;
+                }
+            }
         }
     }
 

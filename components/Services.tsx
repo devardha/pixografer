@@ -1,5 +1,6 @@
 import React from 'react'
 import Styled from '@emotion/styled'
+import Image from 'next/image'
     
 const Services = () => {
     return (
@@ -7,19 +8,34 @@ const Services = () => {
             <ol>
                 <li>
                     <div className="image">
-                        <img src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Photography Service"/>
+                        <Image
+                            src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=8"
+                            alt="Photography Service"
+                            width={400}
+                            height={240}
+                        />
                     </div>
                     <span className="categories-name">Photography</span>
                 </li>
                 <li>
                     <div className="image">
-                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80" alt="Videography Service"/>
+                        <Image
+                            src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80"
+                            alt="Videography Service"
+                            width={400}
+                            height={240}
+                        />
                     </div>
                     <span className="categories-name">Videography</span>
                 </li>
                 <li>
                     <div className="image">
-                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Photo and Video Editing Service"/>
+                        <Image
+                            src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+                            alt="Photo and Video Editing Service"
+                            width={400}
+                            height={240}
+                        />
                     </div>
                     <span className="categories-name">Photo &amp; Video Editing</span>
                 </li>

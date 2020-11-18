@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { CgSearch } from 'react-icons/cg'
 import { connect } from 'react-redux'
 
-function Navbar({ authenticate }){
+function Navbar({ authenticate, loading }){
     return(
         <Wrapper>
             <div className="nav-left">
@@ -46,7 +46,7 @@ function Navbar({ authenticate }){
 
 const Wrapper = styled.nav`
     display: flex;
-    padding:1rem 2rem 0 2rem;
+    padding:0 2rem 0 2rem;
     align-items:center;
     background:transparent;
     justify-content:space-between;
@@ -54,6 +54,7 @@ const Wrapper = styled.nav`
     top: 0;
     width: 100%;
     height:73px;
+    z-index:100;
 
     .nav-list, ul li{
         font-weight:500;

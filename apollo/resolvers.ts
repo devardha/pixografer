@@ -121,8 +121,8 @@ export const resolvers = {
     Mutation: {
         login: async (_parent, { email, password }, _context) => {
             await dbConnect();
-            
             const cookies = new Cookies(_context.req, _context.res)
+
             try {
                 const photographer = await Photographer.findOne({email})
 
@@ -146,6 +146,8 @@ export const resolvers = {
                             })
 
                             return user
+                        }else{
+                            return new AuthenticationError("Email or password invalid")
                         }
                     }else{
                         return new AuthenticationError("User doesn't exist")
@@ -166,10 +168,12 @@ export const resolvers = {
                         })
 
                         return photographer;
+                    }else{
+                        return new AuthenticationError("Email or password invalid")
                     }
                 }
             } catch (error) {
-                throw error
+                return new AuthenticationError('Authentication failed. Please try to reload the page.')
             }
 
             
@@ -246,7 +250,7 @@ export const resolvers = {
                 return newUserData
 
             } catch (error) {
-                return new AuthenticationError('Authentication failed. Please try to reload the page.')
+                return new AuthenticationError('Update failed. Please try to reload the page.')
             }
         },
         addService: async(_parent, { serviceName, servicePrice, photographerId }, _context) => {
@@ -277,7 +281,7 @@ export const resolvers = {
                 }
 
             } catch (error) {
-                return new AuthenticationError('Authentication failed. Please try to reload the page.')
+                return new AuthenticationError('Update failed. Please try to reload the page.')
             }
         },
         createTransaction: async(_parent, { userId, photographerId, userName, photographerName, serviceName, value, description, date, phone }, _context) => {
@@ -312,7 +316,7 @@ export const resolvers = {
                 }
 
             } catch (error) {
-                return new AuthenticationError('Authentication failed. Please try to reload the page.')
+                return new AuthenticationError('Transaction failed. Please try to reload the page.')
             }
         },
         uploadPhoto: async (_parent, { imageUrl, imageName, photographerId }, _context) => {

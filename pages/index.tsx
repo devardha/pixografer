@@ -77,6 +77,7 @@ const Wrapper = styled.div`
             font-weight:700;
             width:70%;
             text-align:left;
+            margin-top:73px;
         }
     }
     .nav-search{
@@ -118,7 +119,7 @@ const Wrapper = styled.div`
     }
     .header{
         background: #eee;
-        background-image:url('/img/background.jpg');
+        background-image:url('/img/background.webp');
         background-size: cover;
         background-repeat: no-repeat;
         width:100%;
