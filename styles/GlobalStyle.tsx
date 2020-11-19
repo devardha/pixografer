@@ -52,7 +52,6 @@ function GlobalStyle(){
             background-color: #1748ff;
             border:1px solid #1748ff;
             color:#F4F8FF;
-            box-shadow:0 4px 14px 0 rgba(0,118,255,0.39);
 
             &:hover{
                 background-color:#0056ff;
@@ -70,19 +69,6 @@ function GlobalStyle(){
             &:disabled{
                 background-color: #eee;
                 color: #999;
-            }
-        }
-
-        .secondary{
-            background-color:#fff;
-            border:1px solid #fff;
-            color:#121212;
-            margin-top:1rem;
-            box-shadow:0 4px 14px 0 #0000000a;
-
-            &:hover{
-                background-color:#fcfcfc;
-                border:1px solid #f9f9f9;
             }
         }
 
@@ -113,6 +99,34 @@ function GlobalStyle(){
 
         form .form-subtitle{
             font-size:1rem;
+        }
+
+        @keyframes load {
+            from {
+                left: -150px;
+            }
+            to   {
+                left: 100%;
+            }
+        }
+
+        .skeleton{
+            position: relative;
+            overflow: hidden;
+            height:100%;
+            width:100%;
+
+            &:before{
+                content: '';
+                display: block;
+                position: absolute;
+                left: -200px;
+                top: 0;
+                height: 100%;
+                width: 200px;
+                background: linear-gradient(to right,transparent 0%,#f3f3f3 50%,transparent 100%);
+                animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+            }
         }
 
         `}/>

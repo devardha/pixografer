@@ -27,13 +27,13 @@ function Navbar({ authenticate, loading }){
                 {
                     authenticate ? (
                         <Link href="/dashboard">
-                            <button className="profile-button">
+                            <button className="profile-button" aria-label="Dashboard button">
                                 Dashboard
                             </button>
                         </Link>
                     ) : (
                         <Link href="/login">
-                            <button className="profile-button">
+                            <button className="profile-button"  aria-label="Login button">
                                 Login
                             </button>
                         </Link>

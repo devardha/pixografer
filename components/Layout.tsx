@@ -14,6 +14,7 @@ const WhoamiQuery = gql`
         whoami{
             __typename
             ... on User{
+                _id,
                 fullname,
                 username,
                 email,
@@ -27,6 +28,7 @@ const WhoamiQuery = gql`
                 }
             }
             ... on Photographer{
+                _id,
                 fullname,
                 username,
                 email,

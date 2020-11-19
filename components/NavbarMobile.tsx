@@ -13,13 +13,15 @@ const NavbarMobile = ({ off, authenticate, userRole }) => {
         if(off){
             let prevScrollpos = window.pageYOffset;
             window.onscroll = function() {
-                var currentScrollPos = window.pageYOffset;
-                if (prevScrollpos > currentScrollPos) {
-                    document.getElementById("navbar").style.bottom = "18px";
-                } else {
-                    document.getElementById("navbar").style.bottom = "-83px";
+                let currentScrollPos = window.pageYOffset;
+                if(document.getElementById('navbar')){
+                    if (prevScrollpos > currentScrollPos) {
+                        document.getElementById("navbar").style.bottom = "18px";
+                    } else {
+                        document.getElementById("navbar").style.bottom = "-83px";
+                    }
+                    prevScrollpos = currentScrollPos;
                 }
-                prevScrollpos = currentScrollPos;
             }
         }
     }, [off])

@@ -2,6 +2,7 @@ import React from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
 import { HiPhotograph } from 'react-icons/hi'
+import Image from 'next/image'
 
 const SearchResult = ({ results }) => {
     return (
@@ -14,8 +15,13 @@ const SearchResult = ({ results }) => {
                             <li>
                                 {
                                     photographer.gallery.length ? (
-                                        <div className="image">
-                                            <img src={photographer.gallery[0].photo} alt=""/>
+                                        <div className="image skeleton">
+                                            <Image
+                                                src={photographer.gallery[0].photo}
+                                                alt={photographer.gallery[0].photoTitle}
+                                                width={400}
+                                                height={280}
+                                            />
                                         </div>
                                     ) : <div className="image">
                                         <i><HiPhotograph/></i>

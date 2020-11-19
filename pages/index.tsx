@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
 import styled from '@emotion/styled'
-import PhotographerHome from '../components/PhotographerHome'
 import { CgSearch } from 'react-icons/cg'
 import { useRouter } from 'next/router'
 import Footer from '../components/Footer'
@@ -45,7 +44,6 @@ export default function Home() {
                     <button onClick={() => getCoordinate()} className="dark">Find Near Me</button>
                 </div>
             </div>
-            {/* <PhotographerHome/> */}
             <Services/>
             <Footer/>
             </Wrapper>

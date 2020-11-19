@@ -49,7 +49,7 @@ const Wrapper = styled.nav`
     top: 0;
     width: 100%;
     height:73px;
-    box-shadow:rgba(0, 0, 0, 0.08) 0px 1px 12px !important;
+    border-bottom:1px solid #eee;
     justify-content: center;
     background:#fff;
     z-index:100;
