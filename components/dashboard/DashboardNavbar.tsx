@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { useRouter } from 'next/router'
 import { BiMenu } from 'react-icons/bi'
 import { logoutUser } from '../../redux/actions/authActions'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { RiCloseLine } from 'react-icons/ri'
 
 function DashboardNavbar({ logoutUser }){
@@ -17,10 +17,18 @@ function DashboardNavbar({ logoutUser }){
         router.push('/')
     }
 
+    useEffect(() => {
+        if(navActive){
+            document.body.style.overflow = 'hidden';
+        }else{
+            document.body.style.overflow = 'auto';
+        }
+    }, [navActive])
+
     return(
         <Wrapper>
             <div className="nav-left">
-                <Link href="/dashbaord">
+                <Link href="/dashboard">
                     <img src="/img/pixografer-logo-v1.1.png" alt=""/>
                 </Link>
             </div>
@@ -29,7 +37,7 @@ function DashboardNavbar({ logoutUser }){
             </div>
             <div className="nav-right">
                 <Link href="/dashboard"><span className={`nav-list ${pathname === '/dashboard' ? 'active' : ''}`}>Home</span></Link>
-                <Link href="/dashboard/works"><span className={`nav-list ${pathname === '/dashboard/works' ? 'active' : ''}`}>Works</span></Link>
+                <Link href="/dashboard/jobs"><span className={`nav-list ${pathname === '/dashboard/jobs' ? 'active' : ''}`}>Works</span></Link>
                 <Link href="/dashboard/gallery"><span className={`nav-list ${pathname === '/dashboard/gallery' ? 'active' : ''}`}>Gallery</span></Link>
                 <Link href="/dashboard/services"><span className={`nav-list ${pathname === '/dashboard/services' ? 'active' : ''}`}>Services</span></Link>
                 <Link href="/dashboard/settings"><span className={`nav-list ${pathname === '/dashboard/settings' ? 'active' : ''}`}>Settings</span></Link>
@@ -42,18 +50,18 @@ function DashboardNavbar({ logoutUser }){
                 </button>
                 <div className={`dashnav-mobile  ${navActive ? 'nav-active' : ''}`}>
                     <div className="nav-head">
-                        <i onClick={() => setNavActive(false)}><RiCloseLine/></i>
+                        <span onClick={() => setNavActive(false)}><RiCloseLine/></span>
                     </div>
                     <div className="nav-body">
                         <div className="dashnav-menu">
                             <Link href="/dashboard"><span className={`${pathname === '/dashboard' ? 'active' : ''}`}>Home</span></Link>
-                            <Link href="/dashboard/works"><span className={`${pathname === '/dashboard/works' ? 'active' : ''}`}>Works</span></Link>
+                            <Link href="/dashboard/jobs"><span className={`${pathname === '/dashboard/jobs' ? 'active' : ''}`}>Works</span></Link>
                             <Link href="/dashboard/gallery"><span className={`${pathname === '/dashboard/gallery' ? 'active' : ''}`}>Gallery</span></Link>
                             <Link href="/dashboard/services"><span className={`${pathname === '/dashboard/services' ? 'active' : ''}`}>Services</span></Link>
                             <Link href="/dashboard/settings"><span className={`${pathname === '/dashboard/settings' ? 'active' : ''}`}>Settings</span></Link>
                             <Link href="/premium"><span>Premium+</span></Link>
+                            <button onClick={() => logout()}className="dark">Logout</button>
                         </div>
-                        <span onClick={() => logout()}className="dark">Logout</span>
                     </div>
                 </div>
             </div>
@@ -76,29 +84,50 @@ const Wrapper = styled.nav`
     background:#fff;
     z-index:100;
 
+    .active{
+        background:#1748ff;
+        color:#fff !important;
+
+        &:hover{
+            background:#1748ff !important;
+            color:#fff !important;
+        }
+    }
+
     .dashnav-mobile{
         height: 100vh;
-        width: 320px;
+        width: 100vw;
         background: #fff;
         border-left: 1px solid #ddd;
-        display: flex;
+        display: none;
         position: absolute;
         z-index: 100;
-        top: -7px;
-        right: -353px;
+        bottom: calc(64px - 100vh);
+        right: -31px;
         transition:all ease-in .2s;
         flex-direction:column;
+
+        .active{
+            background:#fff;
+            color:#000 !important;
+            font-weight:bold;
+
+            &:hover{
+                background:#fff !important;
+                color:#000 !important;
+            }
+        }
 
         .nav-head{
             width:100%;
             height:81px;
             display: flex;
-            padding: 0 1rem;
+            padding: 0 2rem;
             font-size: 1.5rem;
-            align-items: flex-start;
+            align-items: center;
+            justify-content:space-between;
 
-            i{
-                transform: translateY(20px);
+            span{
                 padding: 8px;
                 background: #fafafa;
                 border-radius: 50%;
@@ -109,13 +138,17 @@ const Wrapper = styled.nav`
         .nav-body{
             display: flex;
             flex-direction: column;
-            padding: 2rem 1rem;
+            padding: 2rem;
             justify-content: space-between;
             height: 100%;
 
             .dashnav-menu{
                 display: flex;
                 flex-direction: column;
+
+                button{
+                    padding:.75rem 1.25rem;
+                }
             }
 
             span{
@@ -131,17 +164,7 @@ const Wrapper = styled.nav`
     }
 
     .nav-active{
-        right: -32px;
-    }
-
-    .active{
-        background:#1748ff;
-        color:#fff !important;
-
-        &:hover{
-            background:#1748ff !important;
-            color:#fff !important;
-        }
+        display:flex;
     }
 
     .nav-list, ul li{

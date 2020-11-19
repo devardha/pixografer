@@ -1,31 +1,33 @@
 import Styled from '@emotion/styled'
     
-const ImageGallery = () => {
-    const images = [
-        'https://images.unsplash.com/photo-1578887237591-d2d01aa10a7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        'https://images.unsplash.com/photo-1604761773777-d478adb6a484?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        'https://images.unsplash.com/photo-1593474686394-2dedcffac7d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        'https://images.unsplash.com/photo-1597463030272-a28bdf4c91b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
-    ]
-    
+const ImageGallery = ({ images }) => {
     return (
         <Wrapper>
-            <div className="photos">
-                {
-                    images.map(image => {
-                        return(
-                            <div className="photo">
-                                <img className="photo-grid" src={image}/>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            {
+                images.length > 0 ? (
+                    <div className="photos">
+                        {
+                            images?.map((image, index) => {
+                                return(
+                                    <div className="photo" key={index}>
+                                        <img className="photo-grid" src={image.photo}/>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                ) : <p>No Images to Show</p>
+            }
         </Wrapper>
     );
 }
     
 const Wrapper = Styled.div`
+    p{
+        margin-top:2rem;
+        font-size: 14px;
+        text-align: center;
+    }
     .photos{
         margin-top:1rem;
         line-height: 0;

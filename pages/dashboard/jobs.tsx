@@ -1,12 +1,13 @@
 import React from 'react'
 import Styled from '@emotion/styled'
 import DashboardLayout from '../../components/dashboard/DashboardLayout'
+import { connect } from 'react-redux'
     
-const Works = () => {
+const Jobs = ({ jobs }) => {
     return (
-        <DashboardLayout title="My Works | Pixografer Dashboard">
+        <DashboardLayout title="Jobs | Pixografer Dashboard">
             <Wrapper>
-                <h2>My Works</h2>
+                <h2>Jobs</h2>
                 <table>
                     <thead>
                         <th>No</th>
@@ -17,14 +18,18 @@ const Works = () => {
                         <th>Status</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Arshalla Yumna</td>
-                            <td>1 Hour Photo Session</td>
-                            <td>19 November 2020</td>
-                            <td>110000</td>
-                            <td>Pending</td>
-                        </tr>
+                        {
+                            jobs?.length > 0 ? (
+                                <tr>
+                                    <td>1</td>
+                                    <td>Arshalla Yumna</td>
+                                    <td>1 Hour Photo Session</td>
+                                    <td>19 November 2020</td>
+                                    <td>110000</td>
+                                    <td>Pending</td>
+                                </tr>
+                            ) : ''
+                        }
                     </tbody>
                 </table>
             </Wrapper>
@@ -104,5 +109,9 @@ const Wrapper = Styled.div`
         }
     }
 `
-    
-export default Works
+
+const mapStateToProps = (state) => ({
+    jobs: state.account.userData.transaction,
+})
+
+export default connect(mapStateToProps)(Jobs)

@@ -2,8 +2,9 @@ import React from 'react'
 import Styled from '@emotion/styled'
 import DashboardLayout from '../../components/dashboard/DashboardLayout'
 import ImageGallery from '../../components/ImageGallery'
+import { connect } from 'react-redux'
     
-const Gallery = () => {
+const Gallery = ({ gallery }) => {
     return (
         <DashboardLayout  title="Gallery | Pixografer Gallery">
             <Wrapper>
@@ -11,7 +12,7 @@ const Gallery = () => {
                     <h2>Gallery</h2>
                     <button className="primary">Upload Image</button>
                 </div>
-                <ImageGallery/>
+                <ImageGallery images={gallery}/>
             </Wrapper>
         </DashboardLayout>
     );
@@ -36,4 +37,8 @@ const Wrapper = Styled.div`
     }
 `
     
-export default Gallery
+const mapStateToProps = (state) => ({
+    gallery: state.account.userData.gallery,
+})
+
+export default connect(mapStateToProps)(Gallery)
