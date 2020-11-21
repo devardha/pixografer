@@ -43,6 +43,13 @@ function GlobalStyle(){
             cursor:pointer;
             border-radius:4px;
 
+            &:disabled{
+                background-color: #eee !important;
+                color: #999 !important;
+                pointer-events: none !important;
+                cursor: unset !important;
+            }
+
             &:focus{
                 outline:none;
             }
@@ -50,7 +57,6 @@ function GlobalStyle(){
 
         .primary{
             background-color: #1748ff;
-            border:1px solid #1748ff;
             color:#F4F8FF;
 
             &:hover{
@@ -64,11 +70,6 @@ function GlobalStyle(){
 
             &:hover{
                 background-color:#222;
-            }
-
-            &:disabled{
-                background-color: #eee;
-                color: #999;
             }
         }
 

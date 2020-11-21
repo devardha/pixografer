@@ -45,6 +45,7 @@ const WhoamiQuery = gql`
                     userId
                 }
                 city,
+                bio,
                 photo,
                 transaction{
                     userId,

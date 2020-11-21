@@ -28,7 +28,7 @@ function DashboardNavbar({ logoutUser }){
     return(
         <Wrapper>
             <div className="nav-left">
-                <Link href="/dashboard">
+                <Link href="/">
                     <img src="/img/pixografer-logo-v1.1.png" alt=""/>
                 </Link>
             </div>
@@ -37,7 +37,7 @@ function DashboardNavbar({ logoutUser }){
             </div>
             <div className="nav-right">
                 <Link href="/dashboard"><span className={`nav-list ${pathname === '/dashboard' ? 'active' : ''}`}>Home</span></Link>
-                <Link href="/dashboard/jobs"><span className={`nav-list ${pathname === '/dashboard/jobs' ? 'active' : ''}`}>Works</span></Link>
+                <Link href="/dashboard/jobs"><span className={`nav-list ${pathname === '/dashboard/jobs' ? 'active' : ''}`}>Jobs</span></Link>
                 <Link href="/dashboard/gallery"><span className={`nav-list ${pathname === '/dashboard/gallery' ? 'active' : ''}`}>Gallery</span></Link>
                 <Link href="/dashboard/services"><span className={`nav-list ${pathname === '/dashboard/services' ? 'active' : ''}`}>Services</span></Link>
                 <Link href="/dashboard/settings"><span className={`nav-list ${pathname === '/dashboard/settings' ? 'active' : ''}`}>Settings</span></Link>
@@ -55,7 +55,7 @@ function DashboardNavbar({ logoutUser }){
                     <div className="nav-body">
                         <div className="dashnav-menu">
                             <Link href="/dashboard"><span className={`${pathname === '/dashboard' ? 'active' : ''}`}>Home</span></Link>
-                            <Link href="/dashboard/jobs"><span className={`${pathname === '/dashboard/jobs' ? 'active' : ''}`}>Works</span></Link>
+                            <Link href="/dashboard/jobs"><span className={`${pathname === '/dashboard/jobs' ? 'active' : ''}`}>Jobs</span></Link>
                             <Link href="/dashboard/gallery"><span className={`${pathname === '/dashboard/gallery' ? 'active' : ''}`}>Gallery</span></Link>
                             <Link href="/dashboard/services"><span className={`${pathname === '/dashboard/services' ? 'active' : ''}`}>Services</span></Link>
                             <Link href="/dashboard/settings"><span className={`${pathname === '/dashboard/settings' ? 'active' : ''}`}>Settings</span></Link>
@@ -148,6 +148,7 @@ const Wrapper = styled.nav`
 
                 button{
                     padding:.75rem 1.25rem;
+                    margin-top:16px;
                 }
             }
 

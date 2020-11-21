@@ -33,6 +33,7 @@ export const typeDefs = gql`
         city: String!
         password: String!
         photo: String
+        bio: String
         transaction: [Transaction]
         services: [Services]
         categories: [String]
@@ -81,6 +82,7 @@ export const typeDefs = gql`
         whoami: Entity
     }
     type Mutation{
+        visitPage(photographerId: String): Boolean
         uploadPhoto(imageUrl: String, imageName: String, photographerId: String): Boolean
         createTransaction(userId: String, photographerId: String, userName: String, photographerName: String, serviceName: String, value: Int, description: String, date: String, phone: String): Boolean
         addService(serviceName: String!, servicePrice: Int, photographerId: String ): String

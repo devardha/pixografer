@@ -175,8 +175,6 @@ export const resolvers = {
             } catch (error) {
                 return new AuthenticationError('Authentication failed. Please try to reload the page.')
             }
-
-            
         },
         registerUser: async (_parents, { fullname, username, email, password }, _context) => {
             await dbConnect();
@@ -367,6 +365,18 @@ export const resolvers = {
                     console.log(err)
                     return false
                 })
+        },
+        visitPage: async (_parent, { photographerId }, _context) => {
+            await dbConnect();
+
+            try {
+                const photographer = await Photographer.findById(photographerId)
+            
+                console.log(photographer.bio)
+            } catch (error) {
+                console.log(error)
+                return false
+            }
         },
     }
 }

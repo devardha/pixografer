@@ -1,8 +1,20 @@
 import React from 'react'
 import Styled from '@emotion/styled'
 import DashboardLayout from '../../components/dashboard/DashboardLayout'
-    
-const Dashboard = () => {
+import { connect } from 'react-redux'
+
+const Dashboard = ({ clientTotal, rating }) => {
+    const calculateRating = (ratings) => {
+        try {
+            const totalReviewers = ratings.length
+            const sumRating: any = Object.values(ratings).reduce((a: number, b: number) => a + b)
+            const rating = sumRating / totalReviewers;
+
+            return rating
+        } catch (error) {
+            return 0
+        }
+    }
     return (
         <DashboardLayout title="Home | Pixografer Dashboard">
             <Wrapper>
@@ -14,7 +26,7 @@ const Dashboard = () => {
                                 <span className="card-title">Client</span>
                             </div>
                             <div className="card-body">
-                                <span className="count">0</span>
+                                <span className="count">{ clientTotal?.length  }</span>
                             </div>
                         </div>
                         <div className="card">
@@ -22,7 +34,7 @@ const Dashboard = () => {
                                 <span className="card-title">Ratings</span>
                             </div>
                             <div className="card-body">
-                                <span className="count">0</span>
+                                <span className="count">{ calculateRating(rating) }</span>
                             </div>
                         </div>
                         <div className="card">
@@ -82,6 +94,7 @@ const Wrapper = Styled.div`
 
             .card-body{
                 padding:1rem 2rem;
+                
                 .count{
                     font-size:2rem;
                     font-weight:bold;
@@ -112,5 +125,10 @@ const Wrapper = Styled.div`
         }
     }
 `
+
+const mapStateToProps = (state) => ({
+    clientTotal: state.account.userData.transaction,
+    rating: state.account.userData.rating,
+})
     
-export default Dashboard
+export default connect(mapStateToProps)(Dashboard)

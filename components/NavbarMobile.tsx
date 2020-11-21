@@ -56,7 +56,7 @@ const Wrapper = Styled.div`
         background-color: #fff;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
         bottom: 18px;
-        height: 65px;
+        height: 62px;
         left: 0px;
         overflow: hidden;
         position: fixed;

@@ -72,7 +72,12 @@ const photographerSchema = new Schema({
 		required: true
     },
     bio: {
-        type: String
+        type: String,
+        default: ""
+    },
+    visitor: {
+        type: Number,
+        default: 0
     },
 	password: {
 		type: String,
