@@ -215,19 +215,20 @@ export const resolvers = {
                 const newPhotographer = await Photographer.create({
                     fullname: fullname,
                     username: username,
-                    email: email,
                     password: hashedPassword,
+                    email: email,
                     phone: phone,
                     city: city
-                });
+                })
 
                 return newPhotographer
 
             } catch (error) {
+                console.log(error)
                 return new AuthenticationError('Authentication failed. Please try to reload the page.')
             }
         },
-        updatePhotographer: async(_parent, { fullname, email, username, photo, phone, city, photographerId }, _context) => {
+        updatePhotographer: async(_parent, { fullname, email, username, photo, phone, city, photographerId, bio }, _context) => {
             await dbConnect();
 
             try {
@@ -240,7 +241,8 @@ export const resolvers = {
                     email: email,
                     photo: photo,
                     phone: phone,
-                    city: city
+                    city: city,
+                    bio: bio
                 }
 
                 const newUserData = await Photographer.findByIdAndUpdate(photographerId, newData, { new: true })

@@ -115,7 +115,7 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
                         <input type="tel" name="phone" placeholder="088888888888"/>
                         <span className="field-desc">*Our photographer will text you to confirm the request</span>
                     </div>
-                    <button className="primary" disabled={true}>Book Now</button>
+                    <button className="primary" disabled={loading || accountType === 'photographer'}>Book Now</button>
                 </form>
             </div>
             </div>

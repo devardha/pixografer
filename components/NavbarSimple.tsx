@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { CgSearch } from 'react-icons/cg'
 import { connect } from 'react-redux'
 
-function NavbarSimple({ authenticate }){
+function NavbarSimple({ authenticate, userRole }){
     return(
         <Wrapper>
             <div className="nav-left">
@@ -18,7 +18,9 @@ function NavbarSimple({ authenticate }){
                 </div>
             </div>
             <div className="nav-right">
-                <Link href="/join"><span className="nav-list">Become a Photographer</span></Link>
+                {
+                    userRole === 'photographer' ? '' : <Link href="/join"><span className="nav-list">Become a Photographer</span></Link>
+                }
                 {
                     authenticate ? (
                         <Link href="/dashbaord">

@@ -4,57 +4,8 @@ import Layout from '../components/Layout'
 import Footer from '../components/Footer'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client';
-
-const LoginMutation = gql`
-    mutation LoginMutation($email: String!, $password: String!){
-        login(email: $email, password: $password){
-            __typename
-            ... on User{
-                fullname,
-                username,
-                email,
-                photo,
-                social_login,
-                transaction{
-                    success,
-                    value,
-                    photographerId,
-                    userId,
-                }
-            }
-            ... on Photographer{
-                fullname,
-                username,
-                email,
-                gallery{
-                    photo,
-                    verified,
-                    photoTitle,
-                }
-                verified,
-                available,
-                phone,
-                rating{
-                    rating,
-                    userId
-                }
-                city,
-                photo,
-                transaction{
-                    userId,
-                    photographerId,
-                    value,
-                    success
-                }
-                services{
-                    serviceName,
-                    servicePrice
-                }
-            }
-        }
-    }
-`
+import { useMutation } from '@apollo/client'
+import { LoginMutation } from '../apollo/queries'
     
 const Login = () => {
     const [loginUser, { loading }] = useMutation(LoginMutation);

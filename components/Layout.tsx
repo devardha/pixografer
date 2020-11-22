@@ -2,66 +2,12 @@ import styled from "@emotion/styled"
 import Head from 'next/head'
 import Navbar from './Navbar'
 import NavbarSimple from "./NavbarSimple"
-import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
 import { loadUser } from '../redux/actions/authActions'
 import { useEffect } from "react"
 import { connect } from 'react-redux'
 import NavbarMobile from './NavbarMobile'
-
-const WhoamiQuery = gql`
-    query WhoamiQuery{
-        whoami{
-            __typename
-            ... on User{
-                _id,
-                fullname,
-                username,
-                email,
-                photo,
-                social_login,
-                transaction{
-                    success,
-                    value,
-                    photographerId,
-                    userId,
-                }
-            }
-            ... on Photographer{
-                _id,
-                fullname,
-                username,
-                email,
-                gallery{
-                    photo,
-                    verified,
-                    photoTitle,
-                }
-                verified,
-                available,
-                phone,
-                rating{
-                    rating,
-                    userId
-                }
-                city,
-                bio,
-                photo,
-                transaction{
-                    userId,
-                    photographerId,
-                    value,
-                    success
-                }
-                services{
-                    serviceName,
-                    servicePrice
-                }
-                categories
-            }
-        }
-    }
-`
+import { WhoamiQuery } from '../apollo/queries'
 
 function Layout({ children, title, navbarType, loadUser }) {
     const { data, loading } = useQuery(WhoamiQuery)

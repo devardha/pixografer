@@ -12,7 +12,7 @@ function GlobalStyle(){
         }
 
         textarea{
-            font-family: 'Montserrat', sans-serif;
+            font-family: arial;
         }
 
         input, textarea{

@@ -15,15 +15,6 @@ const gallerySchema = new Schema({
 	},
 })
 
-const ratingSchema = new Schema({
-    rating: { 
-        type: Number,
-    },
-    userId:{
-        type: String,
-    },
-})
-
 const servicesSchema = new Schema({
     serviceName: {
         type: String
@@ -40,18 +31,23 @@ const photographerSchema = new Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 	email: {
-		type: String,
-		required: true,
-		unique: true
+        type: String,
+        required: true,
+        unique: true
     },
     gallery: {
         type: [gallerySchema],
         sparse: true
     },
     verified: {
+        type: Boolean,
+        default: false
+    },
+    verifEmail: {
         type: Boolean,
         default: false
     },
@@ -63,10 +59,12 @@ const photographerSchema = new Schema({
 		type: String,
 		required: true
     },
-    rating: {
-        type: [ratingSchema],
-        sparse: true
-    },
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'Reviews'
+        }
+    ],
     city: {
 		type: String,
 		required: true

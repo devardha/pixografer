@@ -9,13 +9,18 @@ const userSchema = new Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 	email: {
-		type: String,
-		required: true,
-		unique: true
-	},
+        type: String,
+        required: true,
+        unique: true
+    },
+    emailVerified: {
+        type: Boolean,
+        default: false
+    },
 	password: {
 		type: String,
 		required: true,

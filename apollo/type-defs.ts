@@ -7,9 +7,11 @@ export const typeDefs = gql`
         value: Int
         success: Boolean
     }
-    type Rating{
-        rating: Int
+    type Reviews{
         userId: String
+        photographerId: String
+        rating: Int
+        review: String
     }
     type Gallery{
         photo: String
@@ -25,11 +27,12 @@ export const typeDefs = gql`
         fullname: String!
         username: String!
         email: String!
+        verifEmail: Boolean!
         gallery: [Gallery]
         verified: Boolean!
         available: Boolean!
         phone: String!
-        rating: [Rating]
+        reviews: [Reviews]
         city: String!
         password: String!
         photo: String
@@ -43,11 +46,12 @@ export const typeDefs = gql`
         fullname: String!
         username: String!
         email: String!
+        verifEmail: Boolean!
         gallery: [Gallery]
         verified: Boolean!
         available: Boolean!
         phone: String!
-        rating: [Rating]
+        reviews: [Reviews]
         city: String!
         photo: String
         bio: String
@@ -59,6 +63,7 @@ export const typeDefs = gql`
         fullname: String!
         username: String!
         email: String!
+        verifEmail: Boolean!
         password: String!
         photo: String
         social_login: String
@@ -91,6 +96,6 @@ export const typeDefs = gql`
         deletePhoto(url: String, photographerId: String): Boolean
         deleteService(serviceId: String, photographerId: String): Boolean
         registerPhotographer(fullname: String!, username: String!, email: String!, phone: String!, city: String!, password: String!): Photographer
-        updatePhotographer(fullname: String!, username: String!, email: String!, phone: String!, city: String!, photo: String, photographerId: String): Photographer
+        updatePhotographer(fullname: String!, username: String!, email: String!, phone: String!, city: String!, photo: String, photographerId: String, bio: String): Photographer
     }
 `

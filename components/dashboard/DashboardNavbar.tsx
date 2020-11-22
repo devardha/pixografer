@@ -29,7 +29,7 @@ function DashboardNavbar({ logoutUser }){
         <Wrapper>
             <div className="nav-left">
                 <Link href="/">
-                    <img src="/img/pixografer-logo-v1.1.png" alt=""/>
+                    <img src="/img/pixografer-logo-v1.1.png" alt="Pixografer Logo"/>
                 </Link>
             </div>
             <div className="nav-center">

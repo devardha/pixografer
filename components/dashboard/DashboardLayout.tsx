@@ -5,63 +5,9 @@ import { connect } from 'react-redux'
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import { loadUser } from '../../redux/actions/authActions'
-import gql from 'graphql-tag'
 import DotLoader from '../DotLoader'
 import Head from 'next/head'
-    
-const WhoamiQuery = gql`
-    query WhoamiQuery{
-        whoami{
-            __typename
-            ... on User{
-                _id,
-                fullname,
-                username,
-                email,
-                photo,
-                social_login,
-                transaction{
-                    success,
-                    value,
-                    photographerId,
-                    userId,
-                }
-            }
-            ... on Photographer{
-                _id,
-                fullname,
-                username,
-                email,
-                gallery{
-                    photo,
-                    verified,
-                    photoTitle,
-                }
-                verified,
-                available,
-                phone,
-                rating{
-                    rating,
-                    userId
-                }
-                city,
-                bio,
-                photo,
-                transaction{
-                    userId,
-                    photographerId,
-                    value,
-                    success
-                }
-                services{
-                    serviceName,
-                    servicePrice
-                }
-                categories
-            }
-        }
-    }
-`
+import { WhoamiQuery } from '../../apollo/queries'
 
 const DashboardLayout = ({ children, role, authenticate, loadUser, title }) => {
     const router = useRouter();

@@ -10,7 +10,7 @@ const ImageGallery = ({ images }) => {
                             images?.map((image, index) => {
                                 return(
                                     <div className="photo" key={index}>
-                                        <img className="photo-grid" src={image.photo}/>
+                                        <img className="photo-grid" src={image.photo} alt={image.photoTitle}/>
                                     </div>
                                 )
                             })

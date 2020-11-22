@@ -46,7 +46,6 @@ export const account = (state = initialState, action) => {
                 }
             }
         case UPDATE_PHOTOGRAPHER:
-            console.log(action.payload)
             return {
                 ...state,
                 userData: {
@@ -56,7 +55,8 @@ export const account = (state = initialState, action) => {
                     email: action.payload.email,
                     phone: action.payload.phone,
                     city: action.payload.city,
-                    photo: action.payload.photo
+                    photo: action.payload.photo,
+                    bio: action.payload.bio
                 }
             }
         case DELETE_PHOTO:

@@ -2,6 +2,7 @@ import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../apollo/client'
 import { wrapper } from '../redux/store'
 import GlobalStyle from '../styles/GlobalStyle'
+import firebase from '../firebase'
 
 function MyApp({ Component, pageProps }) {
     const apolloClient = useApollo(pageProps.initialApolloState)

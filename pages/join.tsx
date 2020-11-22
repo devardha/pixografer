@@ -4,42 +4,8 @@ import Layout from '../components/Layout'
 import Footer from '../components/Footer'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
-
-const JoinMutation = gql`
-    mutation JoinMutation($fullname: String!, $password: String!, $email: String!, $phone: String!, $city: String!, $username: String!){
-        registerPhotographer(
-            fullname: $fullname,
-            username: $username,
-            email: $email,
-            password: $password,
-            phone: $phone,
-            city: $city
-            ){
-            fullname,
-            username,
-            email,
-            gallery{
-                photo,
-                verified,
-                photoTitle,
-            }
-            verified,
-            available,
-            phone,
-            rating{
-                rating,
-                userId
-            }
-            city,
-            photo,
-            services{
-                serviceName,
-                servicePrice
-            }
-        }
-    }
-`
+import { useMutation } from '@apollo/client'
+import { JoinMutation } from '../apollo/queries'
 
 const Join = () => {
     const [joinUser, { loading }] = useMutation(JoinMutation);
@@ -55,8 +21,6 @@ const Join = () => {
         const password = e.currentTarget.elements.password
         const phone = e.currentTarget.elements.phone
         const city = e.currentTarget.elements.city
-
-        console.log(fullname.value, username.value, email.value, password.value, phone.value, city.value)
 
         joinUser({
             variables: {

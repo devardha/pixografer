@@ -10,12 +10,14 @@ const Jobs = ({ jobs }) => {
                 <h2>Jobs</h2>
                 <table>
                     <thead>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Order</th>
-                        <th>Date</th>
-                        <th>Value</th>
-                        <th>Status</th>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Order</th>
+                            <th>Date</th>
+                            <th>Value</th>
+                            <th>Status</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {
