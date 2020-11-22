@@ -34,13 +34,13 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                     loading ? (
                         <DotLoader/>
                     ) : (
-                        data && photographerData? (
+                        !loading && data && photographerData ? (
                             <>
                             <div className="page-header">
                                 <div className="profile-picture">
                                     {
                                         photographerData.photo ? (
-                                            <img src="" alt=""/>
+                                            <img src={photographerData.photo} alt=""/>
                                         ) : (
                                             <span><HiUserCircle/></span>
                                         )
@@ -79,13 +79,13 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                                                     })
                                                 }
                                             </div>
-                                            <button className="dark btn-showmore">Show More</button>
+                                            { photographerData.gallery?.lenght > 3 ? <button className="dark btn-showmore">Show More</button> : '' }
                                             </>
                                         ) : <p>No Images to Show</p>
                                     }
                                 </div>
                                 <div className="body-right">
-                                    <BookingCard accountType={accountType} userData={userData} serviceOpen={serviceOpen} service={service} setServiceOpen={setServiceOpen} photographerData={photographerData}/>
+                                    <BookingCard setService={setService} accountType={accountType} userData={userData} serviceOpen={serviceOpen} service={service} setServiceOpen={setServiceOpen} photographerData={photographerData}/>
                                 </div>
                             </div>
                             </>

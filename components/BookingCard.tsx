@@ -30,7 +30,7 @@ const TransactionMutation = gql`
     }
 `
     
-const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, userData, accountType }) => {
+const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, userData, accountType, setService }) => {
     const [createTransaction, { loading }] = useMutation(TransactionMutation);
 
     const handleSubmit = (e) => {
@@ -39,18 +39,6 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
         const date = e.currentTarget.elements.date
         const description = e.currentTarget.elements.description
         const phone = e.currentTarget.elements.phone
-
-        console.log({
-            userdId: userData._id,
-            photographerId: photographerData._id,
-            userName: userData.fullname,
-            photographerName: photographerData.fullname,
-            serviceName: service.serviceName,
-            value: service.servicePrice,
-            date: date.value,
-            phone: phone.value,
-            description: description.value
-        })
 
         createTransaction({
             variables: {
@@ -69,6 +57,12 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
         }).catch(err => console.log(err))
     }
 
+    const blurHandler = () => {
+        setTimeout(() => {
+            setServiceOpen(false)
+        }, 220);
+    }
+
     return (
         <Wrapper>
             <div className="booking-card">
@@ -80,11 +74,11 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
                     </div>
                     <div className="field">
                         <label htmlFor="date">Service</label>
-                        <button type="button" className={`options ${serviceOpen ? 'btn-active' : ''}`} onFocus={() => setServiceOpen(true)} onBlur={() => setServiceOpen(false)}>
+                        <button type="button" className={`options ${serviceOpen ? 'btn-active' : ''}`} onBlur={() => blurHandler()} onFocus={() => setServiceOpen(true)}>
                             {
                                 service ? (
                                     <>
-                                    <span>{ service ? service.serviceName : 'Loading...' } - <span className="price">Rp{ service ? service.servicePrice : '' }</span></span>
+                                    <span>{ service ? service.serviceName : 'Loading...' } - <span className="price">{ service.servicePrice === 0 ? 'Lets have a talk' : `Rp${service.servicePrice}` }</span></span>
                                     <i><HiChevronDown/></i>
                                     </>
                                 ) : 'No service available'
@@ -96,8 +90,8 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
                                     {
                                         photographerData?.services.map((service, index) => {
                                             return(
-                                                <li key={index}>
-                                                    <span>{ service.serviceName } - <span className="price">Rp{service.servicePrice}</span></span>
+                                                <li onClick={() => {setService(service)}} key={index}>
+                                                    <span>{ service.serviceName } - <span className="price">{ service.servicePrice === 0 ? 'Lets have a talk' : `Rp${service.servicePrice}` }</span></span>
                                                 </li>
                                             )
                                         })

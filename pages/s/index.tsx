@@ -13,6 +13,7 @@ const PhotographersQuery = gql`
             fullname,
             username,
             email,
+            verifEmail,
             gallery{
                 photo,
                 verified,
@@ -21,9 +22,11 @@ const PhotographersQuery = gql`
             verified,
             available,
             phone,
-            rating{
+            reviews{
                 rating,
-                userId
+                review,
+                userId,
+                photographerId
             }
             city,
             photo,
