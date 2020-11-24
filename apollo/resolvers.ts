@@ -111,7 +111,7 @@ export const resolvers = {
     },
     Entity: {
         __resolveType(obj) {
-            if (obj) {
+            if (obj.gallery) {
                 return 'Photographer';
             }else{
                 return 'User';
@@ -132,6 +132,7 @@ export const resolvers = {
 
                     // If User Exist
                     if(user){
+                        console.log('User Exist')
                         const hashedPassword = user.password;
                         const verify = await argon2.verify(hashedPassword, password);
 
@@ -154,6 +155,7 @@ export const resolvers = {
                     }
                 }else{
                     // If Photographer Exist
+                    console.log('Photographer Exist')
                     const hashedPassword = photographer.password;
                     const verify = await argon2.verify(hashedPassword, password);
 

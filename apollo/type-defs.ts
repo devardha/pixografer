@@ -59,6 +59,11 @@ export const typeDefs = gql`
         services: [Services]
         categories: [String]
     }
+
+    type SocialLogin{
+        socialProvider: String
+        socialId: String
+    }
     type User{
         _id: String!
         fullname: String!
@@ -67,7 +72,7 @@ export const typeDefs = gql`
         verifEmail: Boolean!
         password: String!
         photo: String
-        social_login: String
+        social_login: SocialLogin
         transaction: [Transaction]
     }
     type FullTransaction{

@@ -17,7 +17,7 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    emailVerified: {
+    verifEmail: {
         type: Boolean,
         default: false
     },
@@ -31,7 +31,8 @@ const userSchema = new Schema({
         default: ''
     },
     social_login: {
-        googleID: { type: String, default: '' },
+        socialProvider: { type: String, default: '' },
+        socialId: { type: String, default: '' },
     },
     transaction: [
         {

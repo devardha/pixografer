@@ -26,11 +26,19 @@ function Navbar({ authenticate, userRole }){
                 { userRole === 'photographer' ? '' : <Link href="/join"><span className="nav-list">Become a Photographer</span></Link> }
                 {
                     authenticate ? (
-                        <Link href="/dashboard">
-                            <button className="profile-button" aria-label="Dashboard button">
-                                Dashboard
-                            </button>
-                        </Link>
+                        userRole === 'photographer' ? (
+                            <Link href="/dashboard">
+                                <button className="profile-button" aria-label="Dashboard button">
+                                    Dashboard
+                                </button>
+                            </Link>
+                        ) : (
+                            <Link href="/profile">
+                                <button className="profile-button" aria-label="Dashboard button">
+                                    Profile
+                                </button>
+                            </Link>
+                        )
                     ) : (
                         <Link href="/login">
                             <button className="profile-button"  aria-label="Login button">

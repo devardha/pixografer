@@ -46,7 +46,10 @@ query WhoamiQuery{
             email,
             verifEmail,
             photo,
-            social_login,
+            social_login{
+                socialProvider,
+                socialId
+            },
             transaction{
                 success,
                 value,
@@ -138,12 +141,16 @@ mutation LoginMutation($email: String!, $password: String!){
     login(email: $email, password: $password){
         __typename
         ... on User{
+            _id,
             fullname,
             username,
             email,
             verifEmail,
             photo,
-            social_login,
+            social_login{
+                socialProvider,
+                socialId
+            },
             transaction{
                 success,
                 value,

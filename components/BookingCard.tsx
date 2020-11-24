@@ -4,7 +4,7 @@ import { HiChevronDown } from 'react-icons/hi'
 import { useMutation } from '@apollo/client'
 import gql from 'graphql-tag'
 
-const TransactionMutation = gql`
+export const TransactionMutation = gql`
     mutation TransactionMutation(
         $userId: String!,
         $photographerId: String!,
@@ -15,8 +15,8 @@ const TransactionMutation = gql`
         $date: String!,
         $phone: String!,
         $description: String!
-    ){
-        createTransaction(
+        ){
+            createTransaction(
             userId: $userId,
             photographerId: $photographerId,
             userName: $userName,
@@ -26,7 +26,7 @@ const TransactionMutation = gql`
             date: $date,
             phone: $phone,
             description: $description
-        )
+            )
     }
 `
     
@@ -40,20 +40,36 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
         const description = e.currentTarget.elements.description
         const phone = e.currentTarget.elements.phone
 
-        createTransaction({
-            variables: {
-                userdId: userData._id,
+        console.log(
+            {
+                userId: userData._id,
                 photographerId: photographerData._id,
                 userName: userData.fullname,
                 photographerName: photographerData.fullname,
                 serviceName: service.serviceName,
-                value: service.servicePrice,
+                value: parseInt(service.servicePrice),
+                date: date.value,
+                phone: phone.value,
+                description: description.value
+            }
+        )
+
+        createTransaction({
+            variables: {
+                userId: userData._id,
+                photographerId: photographerData._id,
+                userName: userData.fullname,
+                photographerName: photographerData.fullname,
+                serviceName: service.serviceName,
+                value: parseInt(service.servicePrice),
                 date: date.value,
                 phone: phone.value,
                 description: description.value
             }
         }).then(res => {
-            console.log(res)
+            if(res.data.createTransaction){
+                console.log('Booking success!')
+            }
         }).catch(err => console.log(err))
     }
 
@@ -109,7 +125,7 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
                         <input type="tel" name="phone" placeholder="088888888888"/>
                         <span className="field-desc">*Our photographer will text you to confirm the request</span>
                     </div>
-                    <button className="primary" disabled={loading || accountType === 'photographer' || isBussy}>Book Now</button>
+                    <button className="primary" disabled={loading || accountType === 'photographer' || !isBussy}>Book Now</button>
                 </form>
             </div>
             </div>
