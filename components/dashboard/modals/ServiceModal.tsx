@@ -1,8 +1,22 @@
 import styled from '@emotion/styled'
 import { connect } from 'react-redux'
 import { updateService } from '../../../redux/actions/updateActions';
+import gql from 'graphql-tag'
+import { useMutation } from '@apollo/client'
 
-function ServiceModal({ setModalOpen }: any){
+const AddServiceMutation = gql`
+mutation AddServiceMutation($serviceName: String, $photographerId: String, $servicePrice: Int){
+    addService(
+        serviceName: $serviceName,
+        servicePrice: $servicePrice,
+        photographerId: $photographerId,
+    )
+}
+`
+
+function ServiceModal({ setModalOpen, photographerId, updateService }: any){
+    const [addService, { loading }] = useMutation(AddServiceMutation);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -10,6 +24,25 @@ function ServiceModal({ setModalOpen }: any){
         const servicePrice = e.currentTarget.elements.price
 
         // Add new service to the database
+        addService({
+            variables: {
+                serviceName: serviceName.value,
+                servicePrice: parseInt(servicePrice.value),
+                photographerId: photographerId
+
+            }
+        }).then(() => {
+            updateService({
+                serviceName: serviceName.value,
+                servicePrice: parseInt(servicePrice.value),
+                photographerId: photographerId
+
+            })
+            setModalOpen(false)
+        }).catch(err => {
+            console.log(err)
+            setModalOpen(false)
+        })
     }
 
     return(
@@ -26,7 +59,7 @@ function ServiceModal({ setModalOpen }: any){
                         <label htmlFor="price">Price</label>
                         <input type="number" name="price" placeholder="100000"/>
                     </div>
-                    <button className="primary" type="submit">Add New Service</button>
+                    <button className="primary" type="submit" disabled={loading}>Add New Service</button>
                 </form>
             </div>
         </div>

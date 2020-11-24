@@ -30,7 +30,7 @@ const TransactionMutation = gql`
     }
 `
     
-const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, userData, accountType, setService }) => {
+const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, userData, accountType, setService, isBussy }) => {
     const [createTransaction, { loading }] = useMutation(TransactionMutation);
 
     const handleSubmit = (e) => {
@@ -109,7 +109,7 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
                         <input type="tel" name="phone" placeholder="088888888888"/>
                         <span className="field-desc">*Our photographer will text you to confirm the request</span>
                     </div>
-                    <button className="primary" disabled={loading || accountType === 'photographer'}>Book Now</button>
+                    <button className="primary" disabled={loading || accountType === 'photographer' || isBussy}>Book Now</button>
                 </form>
             </div>
             </div>

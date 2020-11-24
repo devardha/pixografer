@@ -19,6 +19,7 @@ export const typeDefs = gql`
         verified: Boolean
     }
     type Services{
+        _id: String!
         serviceName: String!
         servicePrice: Int!
     }
@@ -90,7 +91,7 @@ export const typeDefs = gql`
         visitPage(photographerId: String): Boolean
         uploadPhoto(imageUrl: String, imageName: String, photographerId: String): Boolean
         createTransaction(userId: String, photographerId: String, userName: String, photographerName: String, serviceName: String, value: Int, description: String, date: String, phone: String): Boolean
-        addService(serviceName: String!, servicePrice: Int, photographerId: String ): String
+        addService(serviceName: String, servicePrice: Int, photographerId: String): String
         registerUser(fullname: String!, username: String!, email: String!, password: String!): User
         login(email: String!, password: String!): Entity
         deletePhoto(url: String, photographerId: String): Boolean

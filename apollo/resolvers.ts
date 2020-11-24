@@ -356,17 +356,16 @@ export const resolvers = {
         deleteService: async (_parent, { serviceId, photographerId }, _context) => {
             await dbConnect();
             
-            Photographer.updateOne(
+            const updated = await Photographer.updateOne(
                 { _id: photographerId },
                 { $pull: { services : { _id : serviceId } } },
-                { safe: true }).then(res => {
-                    if(res){
-                        return true
-                    }
-                }).catch(err => {
-                    console.log(err)
-                    return false
-                })
+                { safe: true })
+
+            if(updated){
+                return true
+            }else{
+                return false
+            }
         },
         visitPage: async (_parent, { photographerId }, _context) => {
             await dbConnect();

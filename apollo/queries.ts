@@ -84,6 +84,7 @@ query WhoamiQuery{
                 success
             }
             services{
+                _id,
                 serviceName,
                 servicePrice
             }

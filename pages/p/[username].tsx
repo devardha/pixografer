@@ -48,7 +48,7 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                                 </div>
                                 <div className="profile-detail">
                                     <span className="loc">{photographerData.city}</span>
-                                    <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span></h2>
+                                    <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span><span className="bussy">Bussy</span></h2>
                                     <p>{photographerData.bio}</p>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                                     }
                                 </div>
                                 <div className="body-right">
-                                    <BookingCard setService={setService} accountType={accountType} userData={userData} serviceOpen={serviceOpen} service={service} setServiceOpen={setServiceOpen} photographerData={photographerData}/>
+                                    <BookingCard isBussy={!userData.available} setService={setService} accountType={accountType} userData={userData} serviceOpen={serviceOpen} service={service} setServiceOpen={setServiceOpen} photographerData={photographerData}/>
                                 </div>
                             </div>
                             </>
@@ -231,6 +231,16 @@ const Wrapper = Styled.div`
         margin-left: 8px;
     }
 
+    .bussy{
+        font-size:.8rem;
+        text-align:center;
+        padding:8px 8px;
+        background:#000;
+        color:#fff;
+        border-radius:4px;
+        margin-left:.5rem;
+    }
+
     .page-header{
         display:flex;
         align-items:center;
@@ -241,6 +251,10 @@ const Wrapper = Styled.div`
 
             h2{
                 margin-bottom:1rem;
+                display:flex;
+                align-items:center;
+                flex-wrap:wrap;
+                justify-content:center;
             }
 
             p{
@@ -260,6 +274,7 @@ const Wrapper = Styled.div`
             display:flex;
             align-items:center;
             justify-content:center;
+            position:relative;
 
             span{
                 font-size: 190px;
@@ -295,6 +310,10 @@ const Wrapper = Styled.div`
 
             .profile-detail{
                 text-align:left;
+
+                h2{
+                    justify-content:flex-start;
+                }
             }
         }
 
@@ -341,7 +360,7 @@ PhotograperPage.getInitialProps = async ({ query: { username } }) => {
 
 const mapStateToProps = (state) => ({
     userData: state.account.userData,
-    accountType: state.account.userRole
+    accountType: state.account.userRole,
 })
 
 export default connect(mapStateToProps)(PhotograperPage)
