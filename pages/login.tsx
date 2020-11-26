@@ -5,6 +5,8 @@ import Footer from '../components/Footer'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
+import { connect } from 'react-redux'
+import { loadUser } from '../redux/actions/authActions'
 import { LoginMutation } from '../apollo/queries'
     
 const Login = () => {
@@ -26,6 +28,7 @@ const Login = () => {
             }
         }).then(res => {
             if(res.data.login){
+                console.log(res.data.login)
                 router.push('/')
             }
         }).catch(err => {
@@ -128,4 +131,8 @@ const Wrapper = Styled.div`
 
 `
 
-export default Login
+const mapDispatchToProps = dispatch => ({
+    loadUser: (user) => dispatch(loadUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(Login)

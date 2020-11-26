@@ -46,16 +46,15 @@ query WhoamiQuery{
             email,
             verifEmail,
             photo,
-            social_login{
-                socialProvider,
-                socialId
-            },
             transaction{
-                success,
+                userName,
+                photographerName,
                 value,
-                photographerId,
-                userId,
-            }
+                date,
+                success,
+                serviceName,
+                description
+            },
         }
         ... on Photographer{
             _id,
