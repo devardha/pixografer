@@ -27,6 +27,8 @@ function Layout({ children, title, navbarType, loadUser }) {
                 <meta name="description" content="Find photographer and videographer nearby." />
                 <meta name="keywords" content="Pixografer, Find Photographer, Find Videographer, Photographer near me, Videographer near me, "/>
                 <meta name="locale" content="en"/>
+                <meta name="robots" content="index,follow"/>
+                <meta name="googlebot" content="index,follow"/>
                 <meta property="og:title" content="Find Photographer, Videographer, &amp; Editor Nearby - Pixografer"/>
                 <meta property="og:description" content="Find photographer and videographer nearby effortlessly." key="ogdesc" />
             </Head>

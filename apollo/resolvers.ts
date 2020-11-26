@@ -132,7 +132,6 @@ export const resolvers = {
 
                     // If User Exist
                     if(user){
-                        console.log('User Exist')
                         const hashedPassword = user.password;
                         const verify = await argon2.verify(hashedPassword, password);
 
@@ -155,7 +154,6 @@ export const resolvers = {
                     }
                 }else{
                     // If Photographer Exist
-                    console.log('Photographer Exist')
                     const hashedPassword = photographer.password;
                     const verify = await argon2.verify(hashedPassword, password);
 
@@ -375,7 +373,6 @@ export const resolvers = {
             try {
                 const photographer = await Photographer.findById(photographerId)
             
-                console.log(photographer.bio)
             } catch (error) {
                 console.log(error)
                 return false

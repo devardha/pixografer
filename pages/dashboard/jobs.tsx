@@ -2,8 +2,13 @@ import React from 'react'
 import Styled from '@emotion/styled'
 import DashboardLayout from '../../components/dashboard/DashboardLayout'
 import { connect } from 'react-redux'
+import { format } from 'date-fns'
     
 const Jobs = ({ jobs }) => {
+    const dateFormatter = (date) => {
+        return format(new Date(parseInt(date)), "MMMM dd, yyy")
+    }
+
     return (
         <DashboardLayout title="Jobs | Pixografer Dashboard">
             <Wrapper>
@@ -28,7 +33,7 @@ const Jobs = ({ jobs }) => {
                                             <td>{index + 1}</td>
                                             <td>{job.userName}</td>
                                             <td>{job.serviceName}</td>
-                                            <td>{job.date}</td>
+                                            <td>{dateFormatter(job.date)}</td>
                                             <td>{job.value}</td>
                                             <td>{job.success ? 'Success' : 'Pending'}</td>
                                         </tr>

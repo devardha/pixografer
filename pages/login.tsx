@@ -28,7 +28,6 @@ const Login = () => {
             }
         }).then(res => {
             if(res.data.login){
-                console.log(res.data.login)
                 router.push('/')
             }
         }).catch(err => {
