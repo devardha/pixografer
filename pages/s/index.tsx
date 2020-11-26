@@ -30,10 +30,6 @@ const PhotographersQuery = gql`
             }
             city,
             photo,
-            services{
-                serviceName,
-                servicePrice
-            }
         }
     }
 `
