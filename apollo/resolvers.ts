@@ -93,7 +93,7 @@ export const resolvers = {
 
                 const photographer = await Photographer.findById(id).populate('transaction')
                 if(!photographer){
-                    const user = await User.findById(id)
+                    const user = await User.findById(id).populate('transaction')
 
                     if(!user){
                         return new AuthenticationError("User doesn't exist")
@@ -124,11 +124,11 @@ export const resolvers = {
             const cookies = new Cookies(_context.req, _context.res)
 
             try {
-                const photographer = await Photographer.findOne({email})
+                const photographer = await Photographer.findOne({email}).populate('transaction')
 
                 // Find User
                 if(!photographer){
-                    const user = await User.findOne({email})
+                    const user = await User.findOne({email}).populate('transaction')
 
                     // If User Exist
                     if(user){

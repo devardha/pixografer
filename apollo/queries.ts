@@ -150,15 +150,16 @@ mutation LoginMutation($email: String!, $password: String!){
             email,
             verifEmail,
             photo,
-            social_login{
-                socialProvider,
-                socialId
-            },
             transaction{
+                userName,
                 success,
                 value,
-                photographerId,
-                userId,
+                date,
+                serviceName,
+                photographerName,
+                transactionId,
+                phone,
+                description
             }
         }
         ... on Photographer{
@@ -183,11 +184,16 @@ mutation LoginMutation($email: String!, $password: String!){
             city,
             photo,
             transaction{
-                userId,
-                photographerId,
+                userName,
+                success,
                 value,
-                success
-            }
+                date,
+                serviceName,
+                photographerName,
+                transactionId,
+                phone,
+                description
+            },
             services{
                 serviceName,
                 servicePrice

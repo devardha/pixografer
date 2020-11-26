@@ -84,7 +84,7 @@ export const typeDefs = gql`
         password: String!
         photo: String
         social_login: SocialLogin
-        transaction: [Transaction]
+        transaction: [FullTransaction]
     }
     union Entity = User | Photographer
     type Query{
