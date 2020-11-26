@@ -23,11 +23,19 @@ function NavbarSimple({ authenticate, userRole }){
                 }
                 {
                     authenticate ? (
-                        <Link href="/dashboard">
-                        <button className="profile-button">
-                            Dashboard
-                        </button>
-                        </Link>
+                        userRole === 'photographer' ? (
+                            <Link href="/dashboard">
+                            <button className="profile-button">
+                                Dashboard
+                            </button>
+                            </Link>
+                        ) : (
+                            <Link href="/profile">
+                            <button className="profile-button">
+                                Profile
+                            </button>
+                            </Link>
+                        )
                     ) : (
                         <Link href="/login">
                         <button className="profile-button">

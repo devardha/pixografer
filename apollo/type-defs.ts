@@ -7,6 +7,17 @@ export const typeDefs = gql`
         value: Int
         success: Boolean
     }
+    type FullTransaction{
+        transactionId: String
+        userName: String
+        photographerName: String
+        value: Int
+        date: String
+        success: Boolean
+        serviceName: String
+        description: String
+        phone: String
+    }
     type Reviews{
         userId: String
         photographerId: String
@@ -38,7 +49,7 @@ export const typeDefs = gql`
         password: String!
         photo: String
         bio: String
-        transaction: [Transaction]
+        transaction: [FullTransaction]
         services: [Services]
         categories: [String]
     }
@@ -74,14 +85,6 @@ export const typeDefs = gql`
         photo: String
         social_login: SocialLogin
         transaction: [Transaction]
-    }
-    type FullTransaction{
-        transactionId: String,
-        userName: String,
-        photographerName: String,
-        value: Int,
-        date: String,
-        success: Boolean
     }
     union Entity = User | Photographer
     type Query{

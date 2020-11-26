@@ -22,14 +22,18 @@ const Jobs = ({ jobs }) => {
                     <tbody>
                         {
                             jobs?.length > 0 ? (
-                                <tr>
-                                    <td>1</td>
-                                    <td>Arshalla Yumna</td>
-                                    <td>1 Hour Photo Session</td>
-                                    <td>19 November 2020</td>
-                                    <td>110000</td>
-                                    <td>Pending</td>
-                                </tr>
+                                jobs.map((job, index) => {
+                                    return(
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{job.userName}</td>
+                                            <td>{job.serviceName}</td>
+                                            <td>{job.date}</td>
+                                            <td>{job.value}</td>
+                                            <td>{job.success ? 'Success' : 'Pending'}</td>
+                                        </tr>
+                                    )
+                                })
                             ) : ''
                         }
                     </tbody>

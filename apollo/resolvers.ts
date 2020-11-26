@@ -91,7 +91,7 @@ export const resolvers = {
                     return new AuthenticationError('User not authenticated')
                 }
 
-                const photographer = await Photographer.findById(id)
+                const photographer = await Photographer.findById(id).populate('transaction')
                 if(!photographer){
                     const user = await User.findById(id)
 

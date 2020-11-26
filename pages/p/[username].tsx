@@ -48,7 +48,7 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                                 </div>
                                 <div className="profile-detail">
                                     <span className="loc">{photographerData.city}</span>
-                                    <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span><span className="bussy">Bussy</span></h2>
+                                    <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span>{ photographerData.available ? '' : <span className="bussy">Bussy</span> }</h2>
                                     <p>{photographerData.bio}</p>
                                 </div>
                             </div>

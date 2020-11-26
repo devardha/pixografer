@@ -81,11 +81,14 @@ query WhoamiQuery{
             bio,
             photo,
             transaction{
-                userId,
-                photographerId,
+                userName,
+                photographerName,
                 value,
-                success
-            }
+                date,
+                success,
+                serviceName,
+                description
+            },
             services{
                 _id,
                 serviceName,
