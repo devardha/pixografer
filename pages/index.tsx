@@ -19,29 +19,29 @@ export default function Home() {
     }
 
     return (
-        <Layout title="Pixografer.com | Find Photographer Near You" navbarType="home">
+        <Layout title="Pixografer.com | Cari fotografer di dekatmu dengan cepat dan mudah" navbarType="home">
             <Wrapper>
             <div className="header">
                 <form>
                     <div className="header-search">
                         <div className="search-loc search-block border">
-                            <span className="title">Location</span>
-                            <span className="sub-title">Where are you going?</span>
+                            <span className="title">Lokasi</span>
+                            <span className="sub-title">Mau Pergi ke Mana?</span>
                         </div>
                         <div className="search-type search-block border">
-                            <span className="title">Service Type</span>
-                            <span className="sub-title">Choose Service Type?</span>
+                            <span className="title">Jenis Layanan</span>
+                            <span className="sub-title">Pilih Layanan yang Kamu Inginkan</span>
                         </div>
                         <div className="search-categories search-block">
-                            <span className="title">Categories</span>
-                            <span className="sub-title">Add Categories?</span>
+                            <span className="title">Kategori</span>
+                            <span className="sub-title">Tambahkan Kategori</span>
                         </div>
                         <button><CgSearch/></button>
                     </div>
                 </form>
                 <div className="hero-title">
-                    <h1>Find Photographer Near You</h1>
-                    <button onClick={() => getCoordinate()} className="dark">Find Near Me</button>
+                    <h1>Cari Fotografer Terdekat dengan Mudah</h1>
+                    <button onClick={() => getCoordinate()} className="dark">Cari Cepat</button>
                 </div>
             </div>
             <Services/>
@@ -73,7 +73,7 @@ const Wrapper = styled.div`
             font-size: 2.5rem;
             max-width:100%;
             font-weight:700;
-            width:70%;
+            width:75%;
             text-align:left;
             margin-top:73px;
         }

@@ -24,13 +24,13 @@ function Layout({ children, title, navbarType, loadUser }) {
                 <title>{title}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta charSet="utf-8" />
-                <meta name="description" content="Find photographer and videographer nearby." />
-                <meta name="keywords" content="Pixografer, Find Photographer, Find Videographer, Photographer near me, Videographer near me, "/>
-                <meta name="locale" content="en"/>
+                <meta name="description" content="Temukan fotografer dan videografer terdekat dengan cepat dan mudah." />
+                <meta name="keywords" content="Pixografer, cari fotografer, cari videografer, cari editor, fotografer terdekat, videografer terdekat, fotografer murah, editor murah"/>
+                <meta name="locale" content="id"/>
                 <meta name="robots" content="index,follow"/>
                 <meta name="googlebot" content="index,follow"/>
-                <meta property="og:title" content="Find Photographer, Videographer, &amp; Editor Nearby - Pixografer"/>
-                <meta property="og:description" content="Find photographer and videographer nearby effortlessly." key="ogdesc" />
+                <meta property="og:title" content="Temukan Fotografer, Videografer, &amp; Editor Terdekat - Pixografer"/>
+                <meta property="og:description" content="Temukan fotografer dan videografer terdekat dengan cepat dan mudah." key="ogdesc" />
             </Head>
             { navbarType === 'home' ? <Navbar loading={loading}/> : <NavbarSimple loading={loading}/> }
             { children }

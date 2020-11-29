@@ -13,13 +13,13 @@ function NavbarSimple({ authenticate, userRole }){
             </div>
             <div className="nav-center">
                 <div className="nav-search">
-                    <input type="text" placeholder="Where are you going?"/>
+                    <input type="text" placeholder="Mau Pergi ke Mana?"/>
                     <i><CgSearch/></i>
                 </div>
             </div>
             <div className="nav-right">
                 {
-                    userRole === 'photographer' ? '' : <Link href="/join"><span className="nav-list">Become a Photographer</span></Link>
+                    userRole === 'photographer' ? '' : <Link href="/join"><span className="nav-list">Gabung Sebagai Fotografer</span></Link>
                 }
                 {
                     authenticate ? (
@@ -32,14 +32,14 @@ function NavbarSimple({ authenticate, userRole }){
                         ) : (
                             <Link href="/profile">
                             <button className="profile-button">
-                                Profile
+                                Profil
                             </button>
                             </Link>
                         )
                     ) : (
                         <Link href="/login">
                         <button className="profile-button">
-                            Login
+                            Masuk
                         </button>
                         </Link>
                     )

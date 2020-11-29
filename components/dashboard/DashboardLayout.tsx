@@ -38,10 +38,12 @@ const DashboardLayout = ({ children, role, authenticate, loadUser, title }) => {
                     <div className="loading"><DotLoader/></div>
                 ) : <>
                     <DashboardNavbar/>
-                    <div className="dashboard-alert">
+                    {/* <div className="dashboard-alert">
                         <span>Join Pixografer premium to start growing your career as a Photographer &amp; Videographer!</span>
+                    </div> */}
+                    <div className="wrapper">
+                        { children }
                     </div>
-                    { children }
                 </> 
             }
             {
@@ -60,6 +62,10 @@ const DashboardLayout = ({ children, role, authenticate, loadUser, title }) => {
 const Wrapper = Styled.div`
     .loading{
         margin-top:40px;
+    }
+
+    .wrapper{
+        margin-top:73px;
     }
 
     .dashboard-alert{

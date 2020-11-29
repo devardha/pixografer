@@ -16,7 +16,7 @@ const ImageGallery = ({ images }) => {
                             })
                         }
                     </div>
-                ) : <p>No Images to Show</p>
+                ) : <p>Tidak ada gambar yang ditampilkan</p>
             }
         </Wrapper>
     );

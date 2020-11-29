@@ -85,9 +85,9 @@ const ModalFormStyled = styled.div`
 
     .modal-content {
         background-color: #fefefe;
-        margin: 5% auto;
+        margin: 40% auto;
         border: 1px solid #888;
-        width: 35%;
+        width: 85%;
         box-shadow: 0 1px 7px #00000038;
         border-radius: 4px;
         display: flex;
@@ -111,6 +111,7 @@ const ModalFormStyled = styled.div`
         text-decoration: none;
         cursor: pointer;
     }
+
     .modal-body{
         padding-bottom:2rem;
 
@@ -157,6 +158,13 @@ const ModalFormStyled = styled.div`
                 height: 40px;
                 border: 1px solid #aaa;
             }
+        }
+    }
+
+    @media(min-width:768px){
+        .modal-content{
+            margin: 5% auto;
+            width: 35%;
         }
     }
 `

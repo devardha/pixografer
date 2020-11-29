@@ -3,7 +3,7 @@ import 'firebase/storage'
 import 'firebase/analytics'
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_KEY,
+    apiKey: 'AIzaSyC6T3PnSbvwA5D0Z70M9x8D29srnypRksY',
     authDomain: "pixografer-ed106.firebaseapp.com",
     databaseURL: "https://pixografer-ed106.firebaseio.com",
     projectId: "pixografer-ed106",

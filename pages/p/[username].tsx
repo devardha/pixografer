@@ -10,7 +10,7 @@ import BookingCard from '../../components/BookingCard'
 import { connect } from 'react-redux'
 
 const PhotograperPage = ({ username, userData, accountType }) => {
-    const [photographerData, setPhotographerData]: any = useState();
+    const [ photographerData, setPhotographerData]: any = useState();
     const [ serviceOpen, setServiceOpen ] = useState(false);
     const [ service, setService ]: any = useState();
     const { data, loading } = useQuery(PhotographerQuery, {
@@ -28,7 +28,7 @@ const PhotograperPage = ({ username, userData, accountType }) => {
     }, [photographerData])
 
     return (
-        <Layout title={`Yudhatama Indra Wardhana Setyabudi | Pixografer.com`} navbarType="search">
+        <Layout title={`${photographerData ? photographerData.fullname : 'Fotografer'} | Pixografer.com`} navbarType="search">
             <Wrapper>
                 {
                     loading ? (
@@ -79,9 +79,9 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                                                     })
                                                 }
                                             </div>
-                                            { photographerData.gallery?.lenght > 3 ? <button className="dark btn-showmore">Show More</button> : '' }
+                                            { photographerData.gallery?.lenght > 3 ? <button className="dark btn-showmore">Tampilkan Lebih Banyak</button> : '' }
                                             </>
-                                        ) : <p>No Images to Show</p>
+                                        ) : <p>Tidak ada gambar yang dapat ditampilkan</p>
                                     }
                                 </div>
                                 <div className="body-right">
@@ -92,8 +92,8 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                         ) : (
                             <>
                                 <div className="not-found">
-                                    <span className="not-found-title">Photographer Not Found!</span>
-                                    <p>Sorry, photographer you are looking for could not be found. Please go back to home page and try to visit this page later.</p>
+                                    <span className="not-found-title">Fotografer Tidak Dapat Ditemukan!</span>
+                                    <p>Maaf, Fotografer yang sedang kamu cari tidak dapat ditemukan. Harap pergi ke halaman utama dan coba kunjungi halaman ini lain kali.</p>
                                 </div>
                             </>
                         )

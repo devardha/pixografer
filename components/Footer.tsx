@@ -7,40 +7,38 @@ const Footer = () => {
             <div className="row">
                 <div className="col">
                     <div className="col-head">
-                        <span className="footer-title">About</span>
+                        <span className="footer-title">Tentang</span>
                         <ul className="footer-list">
-                            <li>About Us</li>
-                            <li>Career</li>
-                            <li>Services</li>
-                            <li>Photographer</li>
+                            <li>Tentang Perusahaan</li>
+                            <li>Karir</li>
+                            <li>Layanan</li>
                         </ul>
                     </div>
                 </div>
                 <div className="col">
                     <div className="col-head">
-                        <span className="footer-title">Photographer</span>
+                        <span className="footer-title">Fotografer</span>
                         <ul className="footer-list">
-                            <li>How photographer works</li>
-                            <li>Community Center</li>
-                            <li>How to become a photographer</li>
-                            <li>How to make money</li>
+                            <li>Cara fotografer bekerja</li>
+                            <li>Pusat Komunitas</li>
+                            <li>Cara menjadi fotografer</li>
                             <li>Resource Center</li>
                         </ul>
                     </div>
                 </div>
                 <div className="col">
                     <div className="col-head">
-                        <span className="footer-title">Help Center</span>
+                        <span className="footer-title">Pusat Bantuan</span>
                         <ul className="footer-list">
-                            <li>Privacy Policy</li>
-                            <li>Terms</li>
-                            <li>Contact</li>
+                            <li>Privasi</li>
+                            <li>Ketentuan</li>
+                            <li>Kontak</li>
                         </ul>
                     </div>
                 </div>
                 <div className="col">
                     <div className="col-head">
-                        <span className="footer-title">Social Media</span>
+                        <span className="footer-title">Media Sosial</span>
                         <ul className="footer-list">
                             <li>Instagram</li>
                             <li>Facebook</li>

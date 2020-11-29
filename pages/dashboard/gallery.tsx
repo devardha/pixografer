@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Styled from '@emotion/styled'
 import DashboardLayout from '../../components/dashboard/DashboardLayout'
 import ImageGallery from '../../components/ImageGallery'
 import { connect } from 'react-redux'
+import UploadImageModal from '../../components/dashboard/modals/UploadImageModal'
     
 const Gallery = ({ gallery }) => {
+    const [modalOpen, setModalOpen] = useState(false);
+
+    useEffect(() => {
+        if(modalOpen){
+            document.body.style.overflow = 'hidden';
+        }else{
+            document.body.style.overflow = 'auto';
+        }
+    }, [modalOpen])
     return (
         <DashboardLayout  title="Gallery | Pixografer Gallery">
             <Wrapper>
+                { modalOpen ? <UploadImageModal setModalOpen={setModalOpen}/> : '' }
                 <div className="dashboard-header">
                     <h2>Gallery</h2>
-                    <button className="primary">Upload Image</button>
+                    <button className="primary" onClick={() => setModalOpen(true)}>Upload Image</button>
                 </div>
                 <ImageGallery images={gallery}/>
             </Wrapper>

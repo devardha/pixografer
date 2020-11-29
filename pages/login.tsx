@@ -36,10 +36,10 @@ const Login = () => {
     }
 
     return (
-        <Layout title="Login | Pixografer.com" navbarType="login">
+        <Layout title="Masuk | Pixografer.com" navbarType="login">
             <Wrapper>
                 <form onSubmit={submitHandler}>
-                    <h2>Login</h2>
+                    <h2>Masuk</h2>
                     {
                         errorMsg ? (
                             <div className="error-msg">
@@ -55,8 +55,8 @@ const Login = () => {
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" placeholder="Password"/>
                     </div>
-                    <button className="dark" type="submit" disabled={loading}>Login</button>
-                    <span className="form-subtitle">Don't have an account? <Link href="/signup"><a>Sign up</a></Link> here.</span>
+                    <button className="dark" type="submit" disabled={loading}>Masuk</button>
+                    <span className="form-subtitle">Belum punya akun? <Link href="/signup"><a>Daftar</a></Link> di sini.</span>
                 </form>
             </Wrapper>
             <Footer/>

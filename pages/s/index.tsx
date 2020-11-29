@@ -53,15 +53,15 @@ const Search = ({ longitude, latitude, ipkey }) => {
     }, [data])
 
     return (
-        <Layout title="Search | Pixografer.com" navbarType="search">
+        <Layout title="Cari Fotografer | Pixografer.com" navbarType="search">
             <Wrapper>
                 <span className="loc">{ loc ? loc : 'Semarang, Central Java, Indonesia' }</span>
-                <h2>Photographers Near You</h2>
-                <p>{results ? results.length : '0'} Photographers Found</p>
+                <h2>Fotografer Terdekat denganmu</h2>
+                <p>{results ? results.length : '0'} Fotografer ditemukan</p>
                 <div className="filter">
-                    <button>Price</button>
-                    <button>Categories</button>
-                    <button>Service Type</button>
+                    <button>Harga</button>
+                    <button>Kategori</button>
+                    <button>Jenis Layanan</button>
                 </div>
                 { data && results ? <SearchResult results={results}/> : <DotLoader/> }
             </Wrapper>

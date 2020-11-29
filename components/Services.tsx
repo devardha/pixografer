@@ -15,7 +15,7 @@ const Services = () => {
                             height={240}
                         />
                     </div>
-                    <span className="categories-name">Photography</span>
+                    <span className="categories-name">Fotografi</span>
                 </li>
                 <li>
                     <div className="image">
@@ -26,7 +26,7 @@ const Services = () => {
                             height={240}
                         />
                     </div>
-                    <span className="categories-name">Videography</span>
+                    <span className="categories-name">Videografi</span>
                 </li>
                 <li>
                     <div className="image">

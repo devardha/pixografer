@@ -85,11 +85,11 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
             <div className="card-body">
                 <form onSubmit={handleSubmit}>
                     <div className="field">
-                        <label htmlFor="date">Booking Date</label>
+                        <label htmlFor="date">Tanggal Booking</label>
                         <input type="date" name="date" placeholder="10/01/2020"/>
                     </div>
                     <div className="field">
-                        <label htmlFor="date">Service</label>
+                        <label htmlFor="date">Layanan</label>
                         <button type="button" className={`options ${serviceOpen ? 'btn-active' : ''}`} onBlur={() => blurHandler()} onFocus={() => setServiceOpen(true)}>
                             {
                                 service ? (
@@ -97,7 +97,7 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
                                     <span>{ service ? service.serviceName : 'Loading...' } - <span className="price">{ service.servicePrice === 0 ? 'Lets have a talk' : `Rp${service.servicePrice}` }</span></span>
                                     <i><HiChevronDown/></i>
                                     </>
-                                ) : 'No service available'
+                                ) : 'Tidak ada layanan tersedia'
                             }
                         </button>
                         {
@@ -117,15 +117,15 @@ const BookingCard = ({ serviceOpen, service, setServiceOpen, photographerData, u
                         }
                     </div>
                     <div className="field">
-                        <label htmlFor="date">Description</label>
-                        <textarea name="description" placeholder="Street style photography at night"/>
+                        <label htmlFor="date">Deskripsi</label>
+                        <textarea name="description" placeholder="Foto santai di kafe"/>
                     </div>
                     <div className="field">
                         <label htmlFor="phone">Phone</label>
                         <input type="tel" name="phone" placeholder="088888888888"/>
-                        <span className="field-desc">*Our photographer will text you to confirm the request</span>
+                        <span className="field-desc">*Fotografer akan menghubungimu untuk mengkonformasi pesananmu</span>
                     </div>
-                    <button className="primary" disabled={loading || accountType === 'photographer' || !isBussy}>Book Now</button>
+                    <button className="primary" disabled={loading || accountType === 'photographer' || !isBussy}>Booking Sekarang</button>
                 </form>
             </div>
             </div>

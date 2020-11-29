@@ -41,10 +41,10 @@ const Join = () => {
     }
 
     return (
-        <Layout title="Join | Pixografer.com" navbarType="login">
+        <Layout title="Gabung Sebagai Fotografer | Pixografer.com" navbarType="login">
             <Wrapper>
                 <form onSubmit={submitHandler}>
-                    <h2>Join</h2>
+                    <h2>Gabung</h2>
                     {
                         errorMsg ? (
                             <div className="error-msg">
@@ -78,8 +78,8 @@ const Join = () => {
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" placeholder="Password"/>
                     </div>
-                    <button className="dark" type="submit"  disabled={loading}>Sign Up</button>
-                    <span className="form-subtitle">Already have an account? <Link href="/login"><a>Login</a></Link> here.</span>
+                    <button className="dark" type="submit"  disabled={loading}>Daftar</button>
+                    <span className="form-subtitle">Sudah punya akun? <Link href="/login"><a>Masuk</a></Link> di sini.</span>
                 </form>
             </Wrapper>
             <Footer/>
