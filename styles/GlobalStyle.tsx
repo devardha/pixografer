@@ -21,6 +21,10 @@ function GlobalStyle(){
             }
         }
 
+        input::placeholder{
+            color:#888 !important;
+        }
+
         * {
             box-sizing: border-box;
         }

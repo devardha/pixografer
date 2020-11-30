@@ -9,12 +9,12 @@ import { PhotographerQuery } from '../../apollo/queries'
 import BookingCard from '../../components/BookingCard'
 import { connect } from 'react-redux'
 
-const PhotograperPage = ({ username, userData, accountType }) => {
+const PhotograperPage = ({ user, userData, accountType }) => {
     const [ photographerData, setPhotographerData]: any = useState();
     const [ serviceOpen, setServiceOpen ] = useState(false);
     const [ service, setService ]: any = useState();
     const { data, loading } = useQuery(PhotographerQuery, {
-        variables: { username }
+        variables: { username: user }
     })
     
     useEffect(() => {
@@ -91,10 +91,10 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                             </>
                         ) : (
                             <>
-                                <div className="not-found">
+                                {/* <div className="not-found">
                                     <span className="not-found-title">Fotografer Tidak Dapat Ditemukan!</span>
                                     <p>Maaf, Fotografer yang sedang kamu cari tidak dapat ditemukan. Harap pergi ke halaman utama dan coba kunjungi halaman ini lain kali.</p>
-                                </div>
+                                </div> */}
                             </>
                         )
                     )
@@ -354,7 +354,7 @@ const Wrapper = Styled.div`
 
 PhotograperPage.getInitialProps = async ({ query: { username } }) => {
     return {
-        username: username
+        user: username
     }
 }
 

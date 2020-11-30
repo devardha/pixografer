@@ -32,11 +32,11 @@ const Wrapper = Styled.div`
         margin-top:1rem;
         line-height: 0;
         
-        -webkit-column-count: 2;
+        -webkit-column-count: 1;
         -webkit-column-gap:   8px;
-        -moz-column-count:    2;
+        -moz-column-count:    1;
         -moz-column-gap:      8px;
-        column-count:         2;
+        column-count:         1;
         column-gap:           8px;  
 
         .photo{

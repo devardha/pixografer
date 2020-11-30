@@ -115,6 +115,7 @@ const Wrapper = styled.div`
             }
         }
     }
+    
     .header{
         background: #eee;
         background-image:url('/img/background.webp');
