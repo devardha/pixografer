@@ -93,7 +93,7 @@ function UploadImageModal({ setModalOpen, photographerId, updateGallery }){
                     <div className="field">
                         <label htmlFor="myfile">Upload Image</label>
                         <div className="upload-button-wrapper">
-                            <button type="button">{ imageFile ? imageFile.name : 'Choose Image' }</button>
+                            <button type="button" className="dark">{ imageFile ? imageFile.name : 'Choose Image' }</button>
                             <input type="file" name="myfile" onChange={handleImageAsFile}/>
                         </div>
                     </div>
@@ -152,15 +152,9 @@ const ModalFormStyled = styled.div`
         }
 
         button{
-            font-size:.8rem;
-            padding:.5rem 1.25rem;
-            height: 40px;
             width:100%;
             margin: 0;
             margin-top: 6px !important;
-            margin-left: auto;
-            color:#fff;
-            background:#000;
         }
 
         input[type=file] {

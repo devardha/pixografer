@@ -28,13 +28,13 @@ const PhotograperPage = ({ user, userData, accountType }) => {
     }, [photographerData])
 
     return (
-        <Layout title={`${photographerData ? photographerData.fullname : 'Fotografer'} | Pixografer.com`} navbarType="search">
+        <Layout title={`${user} | Pixografer.com`} navbarType="search">
             <Wrapper>
                 {
-                    loading ? (
+                    loading && !data ? (
                         <DotLoader/>
                     ) : (
-                        !loading && data && photographerData ? (
+                        photographerData ? (
                             <>
                             <div className="page-header">
                                 <div className="profile-picture">
@@ -48,7 +48,7 @@ const PhotograperPage = ({ user, userData, accountType }) => {
                                 </div>
                                 <div className="profile-detail">
                                     <span className="loc">{photographerData.city}</span>
-                                    <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span>{ photographerData.available ? '' : <span className="bussy">Bussy</span> }</h2>
+                                    <h2>{photographerData.username}<span className="verified"><HiCheckCircle/></span>{ photographerData.available ? '' : <span className="bussy">Bussy</span> }</h2>
                                     <p>{photographerData.bio}</p>
                                 </div>
                             </div>

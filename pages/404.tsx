@@ -9,7 +9,7 @@ export default function Custom404() {
                 <div className="not-found">
                     <span className="not-found-title">Halaman Tidak Ditemukan!</span>
                     <p>Maaf, Halaman yang sedang kamu cari tidak dapat ditemukan. Harap pergi ke halaman utama dan coba kunjungi halaman ini lain kali.</p>
-                    <button className="dark">Kembali ke Home Page</button>
+                    <button className="dark">Kembali ke Halaman Utama</button>
                 </div>
             </Wrapper>
             <Footer/>
@@ -31,6 +31,7 @@ const Wrapper = styled.div`
         .not-found-title{
             font-weight:bold;
             font-size:1.5rem;
+            text-align: center;
         }
 
         p{
