@@ -18,6 +18,10 @@ export default function Home() {
         }
     }
 
+    const handleSearch = () => {
+        router.push(`s?loc=${'all'}&service=${'all'}&cat=${'all'}`)
+    }
+
     return (
         <Layout title="Pixografer.com | Cari fotografer di dekatmu dengan cepat dan mudah" navbarType="home">
             <Wrapper>
@@ -36,11 +40,11 @@ export default function Home() {
                             <span className="title">Kategori</span>
                             <span className="sub-title">Tambahkan Kategori</span>
                         </div>
-                        <button><CgSearch/></button>
+                        <button onClick={() => handleSearch()}><CgSearch/></button>
                     </div>
                 </form>
                 <div className="hero-title">
-                    <h1>Cari Fotografer Terdekat dengan Mudah</h1>
+                    <h1>Cari Fotografer Nggak Pakai Ribet</h1>
                     <button onClick={() => getCoordinate()} className="dark">Cari Cepat</button>
                 </div>
             </div>
@@ -117,7 +121,7 @@ const Wrapper = styled.div`
     }
     .header{
         background: #eee;
-        background-image:url('/img/background.webp');
+        background-image:url('/img/background.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         width:100%;
@@ -245,6 +249,11 @@ const Wrapper = styled.div`
     @media(min-width:768px){
         .nav-search{
             display:none;
+        }
+        .header{
+            h1{
+                margin-top:28px;
+            }
         }
     }
 

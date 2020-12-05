@@ -44,7 +44,7 @@ const DashboardLayout = ({ children, role, authenticate, loadUser, title }) => {
                     <div className="wrapper">
                         { children }
                     </div>
-                </> 
+                </>
             }
             {
                 loading === false && authenticate ? (
