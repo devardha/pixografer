@@ -48,7 +48,7 @@ const PhotograperPage = ({ user, userData, accountType }) => {
                                 </div>
                                 <div className="profile-detail">
                                     <span className="loc">{photographerData.city}</span>
-                                    <h2>{photographerData.username}<span className="verified"><HiCheckCircle/></span>{ photographerData.available ? '' : <span className="bussy">Bussy</span> }</h2>
+                                    <h2>{photographerData.username}{photographerData.verified ? <span className="verified"><HiCheckCircle/></span> : ''}{ photographerData.available ? '' : <span className="bussy">Bussy</span> }</h2>
                                     <p>{photographerData.bio}</p>
                                 </div>
                             </div>
@@ -224,6 +224,7 @@ const Wrapper = Styled.div`
             margin-top: 40px;
         }
     }
+
     .verified{
         color:#0552ff;
         transform: translateY(4px);
@@ -281,12 +282,18 @@ const Wrapper = Styled.div`
                 display: flex;
                 color: #eee;
             }
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 
     .loc{
         font-size:14px;
     }
+    
     h2{
         font-size:1.25rem;
         margin-top:8px;

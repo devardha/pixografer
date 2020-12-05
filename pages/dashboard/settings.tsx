@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { useMutation } from '@apollo/client'
 import { updatePhotographer } from '../../redux/actions/updateActions'
 import { UpdateMutation } from '../../apollo/queries'
+import { HiUserCircle } from 'react-icons/hi'
+import UpdateAvatarModal from '../../components/dashboard/modals/UpdateAvatarModal'
 
 const Settings = ({ userData, updatePhotographer }) => {
     const [formData, setFormData]: any = useState({
@@ -17,6 +19,7 @@ const Settings = ({ userData, updatePhotographer }) => {
         photo: "",
     });
     const [updateProfile, { loading }] = useMutation(UpdateMutation);
+    const [modalOpen, setModalOpen] = useState(false)
 
     useEffect(() => {
         setFormData({
@@ -52,6 +55,7 @@ const Settings = ({ userData, updatePhotographer }) => {
     return (
         <DashboardLayout title="Settings | Pixografer Dashboard">
             <Wrapper>
+                { modalOpen ? <UpdateAvatarModal setModalOpen={setModalOpen}/> : ''}
                 <h2>Settings</h2>
                 <div className="page-body">
                     <div className="page-left">
@@ -83,7 +87,18 @@ const Settings = ({ userData, updatePhotographer }) => {
                             <button className="primary" type="submit" disabled={loading}>Save Changes</button>
                         </form>
                     </div>
-                    <div className="page-right"></div>
+                    <div className="page-right">
+                        <div className="profile-picture">
+                            {
+                                userData.photo ? (
+                                    <img src={userData.photo} alt=""/>
+                                ) : (
+                                    <span><HiUserCircle/></span>
+                                )
+                            }
+                        </div>
+                        <button className="primary" type="button" onClick={() => setModalOpen(true)}>Change Photo</button>
+                    </div>
                 </div>
             </Wrapper>
         </DashboardLayout>
@@ -99,7 +114,9 @@ const Wrapper = Styled.div`
     }
 
     .page-body{
+        justify-content: space-between;
         display:flex;
+        flex-direction: column-reverse;
 
         .page-left{
             width:100%;
@@ -147,12 +164,44 @@ const Wrapper = Styled.div`
                 }
             }
         }
+
+        .page-right{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+
+            .profile-picture{
+                width:190px;
+                height:190px;
+                border-radius:50%;
+                margin: 0 auto 1rem auto;
+                overflow:hidden;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                position:relative;
+                object-fit:cover;
+
+                span{
+                    font-size: 230px;
+                    display: flex;
+                    color: #eee;
+                }
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
     }
 
     @media(min-width:768px){
         padding:40px 5rem 0 5rem;
 
         .page-body{
+            flex-direction: row;
+
             .page-left{
                 width:60%;
 

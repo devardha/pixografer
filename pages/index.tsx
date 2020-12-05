@@ -18,7 +18,8 @@ export default function Home() {
         }
     }
 
-    const handleSearch = () => {
+    const handleSearch = (e) => {
+        e.preventDefault();
         router.push(`s?loc=${'all'}&service=${'all'}&cat=${'all'}`)
     }
 
@@ -26,7 +27,7 @@ export default function Home() {
         <Layout title="Pixografer.com | Cari fotografer di dekatmu dengan cepat dan mudah" navbarType="home">
             <Wrapper>
             <div className="header">
-                <form>
+                <form onSubmit={handleSearch}>
                     <div className="header-search">
                         <div className="search-loc search-block border">
                             <span className="title">Lokasi</span>
@@ -40,7 +41,7 @@ export default function Home() {
                             <span className="title">Kategori</span>
                             <span className="sub-title">Tambahkan Kategori</span>
                         </div>
-                        <button onClick={() => handleSearch()}><CgSearch/></button>
+                        <button><CgSearch/></button>
                     </div>
                 </form>
                 <div className="hero-title">

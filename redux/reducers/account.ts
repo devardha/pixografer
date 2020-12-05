@@ -1,4 +1,4 @@
-import { AUTHENTICATE_USER, UPDATE_GALLERY, DELETE_PHOTO, DELETE_SERVICE, UPDATE_SERVICE, UPDATE_PHOTOGRAPHER, AUTHENTICATE_DESTROY } from '../actions/types'
+import { AUTHENTICATE_USER, UPDATE_GALLERY, DELETE_PHOTO, DELETE_SERVICE, UPDATE_SERVICE, UPDATE_PHOTOGRAPHER, AUTHENTICATE_DESTROY, UPDATE_AVATAR } from '../actions/types'
 
 const initialState = {
     authenticate: false,
@@ -43,6 +43,14 @@ export const account = (state = initialState, action) => {
                 userData: {
                     ...state.userData,
                     services: [...state.userData['services'], action.payload]
+                }
+            }
+        case UPDATE_AVATAR:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    photo: action.payload
                 }
             }
         case UPDATE_PHOTOGRAPHER:

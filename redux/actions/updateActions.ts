@@ -1,4 +1,4 @@
-import { DELETE_PHOTO, UPDATE_GALLERY, DELETE_SERVICE, UPDATE_SERVICE, UPDATE_PHOTOGRAPHER } from './types'
+import { DELETE_PHOTO, UPDATE_GALLERY, DELETE_SERVICE, UPDATE_SERVICE, UPDATE_PHOTOGRAPHER, UPDATE_AVATAR } from './types'
 
 // Update Photographer Gallery
 export const updateGallery = (image) => (dispatch) => {
@@ -21,6 +21,14 @@ export const updatePhotographer = (data) => (dispatch) => {
     dispatch({
         type: UPDATE_PHOTOGRAPHER,
         payload: data
+    })
+}
+
+// Update Avatar
+export const updateAvatar = (photo) => (dispatch) => {
+    dispatch({
+        type: UPDATE_AVATAR,
+        payload: photo
     })
 }
 

@@ -2,7 +2,7 @@ import dbConnect from '../utils/dbConnect'
 import User from '../models/user.model'
 import Transaction from '../models/transaction.model'
 import Photographer from '../models/photographer.model'
-import { AuthenticationError } from 'apollo-server-micro'
+import { ApolloError, AuthenticationError } from 'apollo-server-micro'
 import jwt from 'jsonwebtoken'
 import Cookies from 'cookies'
 import argon2 from 'argon2'
@@ -373,6 +373,34 @@ export const resolvers = {
             try {
                 const photographer = await Photographer.findById(photographerId)
             
+            } catch (error) {
+                console.log(error)
+                return false
+            }
+        },
+        updatePhotographerAvatar: async (_parent, { photographerId, imageUrl }, _context) => {
+            await dbConnect();
+
+            try {
+                const newData = await Photographer.findByIdAndUpdate(photographerId, { $set: { 'photo': imageUrl} }, { new: true })
+                if(!newData){
+                    return new ApolloError('Something wrong when updating profile')
+                }
+                return newData.photo;
+            } catch (error) {
+                console.log(error)
+                return false
+            }
+        },
+        updateUserAvatar: async (_parent, { userId, imageUrl }, _context) => {
+            await dbConnect();
+
+            try {
+                const newData = await User.findByIdAndUpdate(userId, { $set: { 'photo': imageUrl} }, { new: true })
+                if(!newData){
+                    return new ApolloError('Something wrong when updating profile')
+                }
+                return newData.photo;
             } catch (error) {
                 console.log(error)
                 return false

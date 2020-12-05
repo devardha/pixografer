@@ -1,7 +1,7 @@
 import React from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
-import { HiPhotograph } from 'react-icons/hi'
+import { HiPhotograph, HiCheckCircle } from 'react-icons/hi'
 import Image from 'next/image'
 
 const SearchResult = ({ results }) => {
@@ -28,7 +28,7 @@ const SearchResult = ({ results }) => {
                                     </div>
                                 }
                                 <span className="photographer-loc">Semarang, Indonesia</span>
-                                <span className="photographer-name">{photographer.username}</span>
+                                <span className="photographer-name">{photographer.username}{photographer.verified ? <span className="verified"><HiCheckCircle/></span> : ''}</span>
                             </li>
                             </Link>
                         )
@@ -41,6 +41,13 @@ const SearchResult = ({ results }) => {
     
 const Wrapper = Styled.div`
     padding-top:40px;
+
+    .verified{
+        color:#0552ff;
+        transform: translateY(3px);
+        display: inline-block;
+        margin-left: 4px;
+    }
 
     ol{
         display: grid;

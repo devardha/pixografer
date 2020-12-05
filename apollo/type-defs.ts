@@ -97,6 +97,8 @@ export const typeDefs = gql`
     }
     type Mutation{
         visitPage(photographerId: String): Boolean
+        updatePhotographerAvatar(imageUrl: String, photographerId: String): String
+        updateUserAvatar(imageUrl: String, userId: String): String
         uploadPhoto(imageUrl: String, imageName: String, photographerId: String): Boolean
         createTransaction(userId: String, photographerId: String, userName: String, photographerName: String, serviceName: String, value: Int, description: String, date: String, phone: String): Boolean
         addService(serviceName: String, servicePrice: Int, photographerId: String): String
