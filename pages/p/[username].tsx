@@ -9,12 +9,12 @@ import { PhotographerQuery } from '../../apollo/queries'
 import BookingCard from '../../components/BookingCard'
 import { connect } from 'react-redux'
 
-const PhotograperPage = ({ username, userData, accountType }) => {
+const PhotograperPage = ({ user, userData, accountType }) => {
     const [ photographerData, setPhotographerData]: any = useState();
     const [ serviceOpen, setServiceOpen ] = useState(false);
     const [ service, setService ]: any = useState();
     const { data, loading } = useQuery(PhotographerQuery, {
-        variables: { username }
+        variables: { username: user }
     })
     
     useEffect(() => {
@@ -28,13 +28,13 @@ const PhotograperPage = ({ username, userData, accountType }) => {
     }, [photographerData])
 
     return (
-        <Layout title={`${photographerData ? photographerData.fullname : 'Fotografer'} | Pixografer.com`} navbarType="search">
+        <Layout title={`${user} | Pixografer.com`} navbarType="search">
             <Wrapper>
                 {
-                    loading ? (
+                    loading && !data ? (
                         <DotLoader/>
                     ) : (
-                        !loading && data && photographerData ? (
+                        photographerData ? (
                             <>
                             <div className="page-header">
                                 <div className="profile-picture">
@@ -48,7 +48,7 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                                 </div>
                                 <div className="profile-detail">
                                     <span className="loc">{photographerData.city}</span>
-                                    <h2>{photographerData.fullname}<span className="verified"><HiCheckCircle/></span>{ photographerData.available ? '' : <span className="bussy">Bussy</span> }</h2>
+                                    <h2>{photographerData.username}<span className="verified"><HiCheckCircle/></span>{ photographerData.available ? '' : <span className="bussy">Bussy</span> }</h2>
                                     <p>{photographerData.bio}</p>
                                 </div>
                             </div>
@@ -91,10 +91,10 @@ const PhotograperPage = ({ username, userData, accountType }) => {
                             </>
                         ) : (
                             <>
-                                <div className="not-found">
+                                {/* <div className="not-found">
                                     <span className="not-found-title">Fotografer Tidak Dapat Ditemukan!</span>
                                     <p>Maaf, Fotografer yang sedang kamu cari tidak dapat ditemukan. Harap pergi ke halaman utama dan coba kunjungi halaman ini lain kali.</p>
-                                </div>
+                                </div> */}
                             </>
                         )
                     )
@@ -354,7 +354,7 @@ const Wrapper = Styled.div`
 
 PhotograperPage.getInitialProps = async ({ query: { username } }) => {
     return {
-        username: username
+        user: username
     }
 }
 

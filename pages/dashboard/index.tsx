@@ -39,7 +39,7 @@ const Dashboard = ({ clientTotal, rating }) => {
                         </div>
                         <div className="card">
                             <div className="card-head">
-                                <span className="card-title">Profile Visit</span>
+                                <span className="card-title">Pengunjung</span>
                             </div>
                             <div className="card-body">
                                 <span className="count">0</span>
@@ -47,10 +47,10 @@ const Dashboard = ({ clientTotal, rating }) => {
                         </div>
                         <div className="card">
                             <div className="card-head">
-                                <span className="card-title">Revenue</span>
+                                <span className="card-title">Penghasilan</span>
                             </div>
                             <div className="card-body">
-                                <span className="count">$0</span>
+                                <span className="count">Rp 0</span>
                             </div>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { v4 } from 'uuid'
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/client'
+import { updateGallery } from '../../../redux/actions/updateActions'
 
 const UploadPhotoMutation = gql`
 mutation UploadPhotoMutation($imageUrl: String, $imageName: String, $photographerId: String){
@@ -16,7 +17,7 @@ mutation UploadPhotoMutation($imageUrl: String, $imageName: String, $photographe
 }
 `
 
-function UploadImageModal({ setModalOpen, photographerId }){
+function UploadImageModal({ setModalOpen, photographerId, updateGallery }){
     const [ imageFile, setImageFile ]: any = useState();
     const [ imageName, setImageName ] = useState('');
     const [ error, setError ]: any = useState();
@@ -39,7 +40,7 @@ function UploadImageModal({ setModalOpen, photographerId }){
         const uploadTask = storage.ref(`photographer-photos/${generateFileName}`).put(imageFile);
         const imageName = e.currentTarget.elements.name
 
-        uploadTask.on('state_changed', 
+        uploadTask.on('state_changed',
         (snapshot) => {
             setUploadLoading(true)
             const progress = snapshot.bytesTransferred;
@@ -64,6 +65,11 @@ function UploadImageModal({ setModalOpen, photographerId }){
                     }
                 }).then(res => {
                     if(res.data.uploadPhoto){
+                        updateGallery({
+                            photoTitle: imageName,
+                            photo: url,
+                            verified: false
+                        })
                         setModalOpen(false)
                         setUploadLoading(false)
                     }
@@ -87,8 +93,7 @@ function UploadImageModal({ setModalOpen, photographerId }){
                     <div className="field">
                         <label htmlFor="myfile">Upload Image</label>
                         <div className="upload-button-wrapper">
-                            <span className="filename">{ imageFile ? imageFile.name : 'No file choosen...' }</span>
-                            <button type="button">Choose Image</button>
+                            <button type="button" className="dark">{ imageFile ? imageFile.name : 'Choose Image' }</button>
                             <input type="file" name="myfile" onChange={handleImageAsFile}/>
                         </div>
                     </div>
@@ -139,35 +144,17 @@ const ModalFormStyled = styled.div`
     .upload-button-wrapper{
         display:flex;
         align-items: center;
-        
-        .filename{
-            margin-top:6px;
-            padding: 0 1rem;
-            height: 40px;
-            border: 1px solid #aaa;
-            display: flex;
-            align-items: center;
-            font-size: .9rem;
-            color: rgb(118, 118, 118);
-            font-weight: 400;
-            width: 65%;
-            overflow: hidden;
-            position: relative;
-            font-family:Arial, Helvetica, sans-serif;
-            z-index: 5;
+
+        &:hover{
+            button{
+                background: #121212;
+            }
         }
 
         button{
-            font-size:.8rem;
-            padding:.5rem 1.25rem;
-            height: 40px;
+            width:100%;
             margin: 0;
             margin-top: 6px !important;
-            margin-left: auto;
-
-            &:hover{
-                background: #f4f4f4;
-            }
         }
 
         input[type=file] {
@@ -175,7 +162,6 @@ const ModalFormStyled = styled.div`
             left: 0;
             bottom: 0;
             opacity: 0;
-            cursor:pointer;
         }
     }
 
@@ -183,7 +169,7 @@ const ModalFormStyled = styled.div`
         background-color: #fefefe;
         margin: 40% auto;
         border: 1px solid #888;
-        width: 85%;
+        width: 90%;
         box-shadow: 0 1px 7px #00000038;
         border-radius: 4px;
         display: flex;
@@ -255,7 +241,7 @@ const ModalFormStyled = styled.div`
 `
 
 const mapDispatchToProps = dispatch => ({
-    
+    updateGallery: (image) => dispatch(updateGallery(image)),
 });
 
 const mapStateToProps = (state) => ({

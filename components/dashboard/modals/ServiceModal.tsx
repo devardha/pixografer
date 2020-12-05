@@ -87,7 +87,7 @@ const ModalFormStyled = styled.div`
         background-color: #fefefe;
         margin: 40% auto;
         border: 1px solid #888;
-        width: 85%;
+        width: 90%;
         box-shadow: 0 1px 7px #00000038;
         border-radius: 4px;
         display: flex;
